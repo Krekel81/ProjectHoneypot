@@ -157,6 +157,7 @@ html#landingPage #challengeList button:hover
 
 html#landingPage #landing2 h2
 {
+    text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
     margin-top: 2rem;
@@ -200,4 +201,12 @@ html#landingPage label[for=files]:hover
     color:white;
     background-color: rgba(11, 211, 61, 0.753);
     transition: 0.5s;
+}
+html#landingPage #landingDiv
+{
+    height: 85%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
 }
