@@ -12,5 +12,13 @@ function init()
         location.replace(`https:${location.href.substring(location.protocol.length)}`);
     }
 */
+    document.querySelectorAll("#challengeList button").forEach((element, index) => {
+        const page = "challenge" + (index+1) + ".html";
+        element.addEventListener('click', () => redirectHTML(page));
+    });
 }
 
+function redirectHTML(page)
+{
+    window.location.href = page;
+}
