@@ -14,9 +14,18 @@ use App\Http\Controllers\ViewController;
 */
 
 Route::get('/', function () {
-    return View::make('index');
+    return view('index');
 });
 
+Route::get('/index.html', [ViewController::class, 'showIndex']);
+Route::get('/register.html', [ViewController::class, 'showRegister']);
+
+Route::get('/landing.html', [ViewController::class, 'showLanding']);
+Route::get('/challenge1.html', [ViewController::class, 'showChallenge1']);
+Route::get('/challenge2.html', [ViewController::class, 'showChallenge2']);
+Route::get('/challenge3.html', [ViewController::class, 'showChallenge3']);
+Route::get('/challenge4.html', [ViewController::class, 'showChallenge4']);
+Route::get('/challenge5.html', [ViewController::class, 'showChallenge5']);
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
 
