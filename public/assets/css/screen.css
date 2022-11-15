@@ -1,9 +1,5 @@
 /* INDEX & REGISTER*/
 /* COLOR GREEN: #036300; */
-html
-{
-    cursor: crosshair;
-}
 a{
     color: #59ca12;
     text-decoration: none;
@@ -33,6 +29,7 @@ button:hover
 input{
     background-color: #575f7762;
     color: lawngreen;
+    font-family: 'Courier New', Courier, monospace;
     border-radius: 0.5rem;
     width: 100%;
 }
@@ -52,17 +49,18 @@ canvas
 
 
 html{
+    cursor: crosshair;
     background-color: black;
     color: lawngreen;
     font-family: Monospace, sans-serif;
     overflow-y: hidden;
 }
 header{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 3rem;
     font-size: 3rem;
     text-align: center;
     font-size: 4rem;
-    background-image: url("assets/images/pitta.png");/* Image not in folder */
     background-size: 5rem;
     background-repeat: no-repeat;
     background-position: center left;
@@ -98,6 +96,22 @@ footer
     text-align: center;
 }
 
+/* INDEX */
+html#index main
+{
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(20, 19, 19);
+    width: 25rem;
+    height: 25rem;
+    border-radius: 2rem;
+    opacity: 0.93;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
 
 /* LANDING */
 html#landingPage

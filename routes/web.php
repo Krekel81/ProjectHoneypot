@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+View::addExtension('html', 'php');
 
 Route::get('/', function () {
-    return view('index');
+    return View::make('index');
 });
+
+
+Route::get('/hello', [ViewController::class, 'helloworld']);
