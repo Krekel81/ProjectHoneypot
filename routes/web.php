@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ViewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-View::addExtension('html', 'php');
 
 Route::get('/', function () {
     return View::make('index');
@@ -20,3 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
+
+Route::get('/getUser', [UserController::class, 'getUser']);
+Route::get('/getAllUsers', [UserController::class, 'getAllUsers']);
+Route::post('/createNewUser', [UserController::class, 'createNewUser']);
