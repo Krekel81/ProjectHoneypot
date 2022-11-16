@@ -29,6 +29,3 @@ Route::get('/challenge5.html', [ViewController::class, 'showChallenge5']);
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
 
-Route::get('/getUser', [UserController::class, 'getUser']);
-Route::get('/getAllUsers', [UserController::class, 'getAllUsers']);
-Route::post('/createNewUser', [UserController::class, 'createNewUser']);
