@@ -39,4 +39,4 @@ Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
 Route::get('/users', [UserDemoController::class, 'all']);
 Route::get('/users/{id}', [UserDemoController::class, 'get']);
 
-Route::get('/checking/{name}', [UserController::class, 'getUserChecking']);
+Route::get('/checking', [UserController::class, 'allUsersChecking']);
