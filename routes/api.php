@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 //users
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::post('/user', [UserController::class, 'createNewUser']);
-Route::delete('/user', [AirportApiController::class, "deleteAllUsers"]);
+Route::delete('/user', [UserController::class, "deleteAllUsers"]);

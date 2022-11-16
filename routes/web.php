@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserDemoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +30,13 @@ Route::get('/challenge4.html', [ViewController::class, 'showChallenge4']);
 Route::get('/challenge5.html', [ViewController::class, 'showChallenge5']);
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
+Route::get('/test/test.php', [ViewController::class, 'showTest']);
+Route::get('/test/test2.php', [ViewController::class, 'showTest2']);
+Route::get('/test/test3.php', [ViewController::class, 'showTest3']);
+Route::get('/test/test4.php', [ViewController::class,'showTest4']);
+Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
 
+Route::get('/users', [UserDemoController::class, 'all']);
+Route::get('/users/{id}', [UserDemoController::class, 'get']);
+
+Route::get('/checking/{name}', [UserController::class, 'getUserChecking']);

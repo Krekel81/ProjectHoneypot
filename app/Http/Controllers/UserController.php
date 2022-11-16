@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    private $model;
+    public function __construct(User $model){
+        $this->model = $model;
+    }
     function getUsers()
     {
         Log::info("Retrieving users");
@@ -20,17 +24,10 @@ class UserController extends Controller
         Log::info("Creating user");
         //Rules
         $rules = $this -> buildRulesUsers();
-        $validator = Validator::make($request -> all(), $rules);
 
+        $validator = Validator::make($request -> all(), $rules);
         //Create model instance
         $user = new User();
-
-        //Fill in specific Users columns
-        
-        $user -> name = $request -> input("name");
-        $user -> password = $request -> input("password");
-        
-
 
         //Save & return
         return $this->checkIfInputIsValidUser($user, $validator);
@@ -44,17 +41,17 @@ class UserController extends Controller
     function buildRulesUsers()
     {
 
-        return ["name" =>  "required|string|min:1|max:50|unique:all",
+        return ["name" =>  "required|string|min:1|max:50",
                 "password" =>  "required|string|min:1|max:50"];
     }
     function checkIfInputIsValidUser($user, $validator)
     {
         if(!($validator-> fails()))
-            { 
+            {
                 $data = $validator->validate();
 
                 $user -> name = $data['name'];
-                $password -> password = $data['password'];
+                $user -> password = $data['password'];
 
                 $user -> save();
                 return $user;
@@ -79,5 +76,18 @@ class UserController extends Controller
         }
         Log::info("Did not find a user with the name $userName");
         return null;
+    }
+
+    public function allUsersChecking(){
+
+        $data = $this->model->all();
+
+        return view("checking", ["users" => $data]);
+    }
+
+    public function getUserChecking($name){
+        $data = $this->model->where('name', $name)->first();
+        Log::info($data);
+        return view("checking", ["user" => $data]);
     }
 }
