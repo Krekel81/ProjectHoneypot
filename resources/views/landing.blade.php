@@ -18,7 +18,6 @@ if(!($_SESSION["loggedIn"]))
     <link href="https://fonts.cdnfonts.com/css/matrix" rel="stylesheet">
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
-    <script src="assets/js/uploadedfile.js"></script>
     <script src="assets/js/redirect.js"></script>
 </head>
 <body>
@@ -46,9 +45,10 @@ if(!($_SESSION["loggedIn"]))
                     <div id="avatarDiv">
                         <img id="avatar" src="assets/images/hacker.png" alt="" srcset="">
                     </div>
-                    <label for="files">Select Image</label>
-                    <input id="files" style="visibility:hidden;" type="file">
-                    <form>
+                    <form method="POST" action="api/image">
+                        <input name="files" id="files" type="file">
+                        <input type="submit" value="Upload">
+                    </form>
                         <button name="btnLogout" id="btnLogout">Logout</button>
                     </form>
 

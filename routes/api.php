@@ -20,3 +20,5 @@ use App\Models\User;
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::post('/user', [UserController::class, 'createNewUser']);
 Route::delete('/user', [UserController::class, "deleteAllUsers"]);
+
+Route::post('/image', [UserController::class, 'uploadImage']);

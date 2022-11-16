@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -56,7 +57,13 @@ class UserController extends Controller
 
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
+
+                $this->createFolder($user['name']);
+
                 $user -> save();
+
+
+
                 header("Location: ../landing");
                 exit();
                 return $user;
@@ -101,9 +108,37 @@ class UserController extends Controller
         return view("register", ["users" => $data]);
     }
 
+    public function allUsersCheckingLanding(){
+
+        $data = $this->model->all();
+
+        return view("landing", ["users" => $data]);
+    }
+
     public function getUserChecking($name){
         $data = $this->model->where('name', $name)->first();
         Log::info($data);
         return view("checking", ["user" => $data]);
     }
+
+    public function createFolder($name){
+        $path = "public/images/$name";
+
+        Storage::makeDirectory($path, 0755, true);
+
+        return Log::info("Successfully created folder");
+
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          ]);
+
+        $image = $request->image;
+        Log::info($image, $request);
+        return $image;
+    }
+
 }

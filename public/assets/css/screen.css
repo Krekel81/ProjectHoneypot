@@ -214,12 +214,12 @@ html#landingPage #avatar
     border-radius: 50%;
     border: 0.2rem solid white;
 }
-html#landingPage label[for=files]
+html#landingPage input#files
 {
 
     margin-top: 1rem;
     text-align: center;
-    width: 10rem;
+    width: 20rem;
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
     background-color: #575f7762;
@@ -228,7 +228,7 @@ html#landingPage label[for=files]
     margin-top: 2rem;
     cursor: pointer;
 }
-html#landingPage label[for=files]:hover
+html#landingPage input#files:hover
 {
     color:white;
     background-color: rgba(11, 211, 61, 0.753);

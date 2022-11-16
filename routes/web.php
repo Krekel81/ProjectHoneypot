@@ -22,6 +22,8 @@ Route::get('/register', [ViewController::class, 'showRegister']);
 Route::get('/register', [UserController::class, 'allUsersCheckingRegister']);
 
 Route::get('/landing', [ViewController::class, 'showLanding']);
+Route::get('/landing', [UserController::class, 'allUsersCheckingLanding']);
+
 Route::get('/challenge1.html', [ViewController::class, 'showChallenge1']);
 Route::get('/challenge2.html', [ViewController::class, 'showChallenge2']);
 Route::get('/challenge3.html', [ViewController::class, 'showChallenge3']);
