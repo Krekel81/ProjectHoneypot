@@ -48,12 +48,17 @@ class UserController extends Controller
     {
         if(!($validator-> fails()))
             {
+                session_start();
                 $data = $validator->validate();
 
                 $user -> name = $data['name'];
                 $user -> password = $data['password'];
 
                 $user -> save();
+                $_SESSION["loggedIn"] = true;
+                $_SESSION["username"] = $data["name"];
+                header("Location: ../landing");
+                exit();
                 return $user;
             }
             //Returns the errors and statuscode 422

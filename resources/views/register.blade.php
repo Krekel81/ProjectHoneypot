@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if(isset($_SESSION["loggedIn"]))
+{
+    if($_SESSION["loggedIn"])
+    {
+        header("Location: landing");
+        exit();
+    }
+}
+$_SESSION["loggedIn"] = false;
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,19 +40,20 @@
     <h1>The Matrix</h1>
 </header>
 <main>
-    <form method="get" action="landing">
+    <form method="post" action="api/user">
         <fieldset>
             <div>
-                <label for="email">E-MAIL</label>
-                <input type="email" name="email" id="email">
+                <label for="name">NAME</label>
+                <input type="name" name="name" id="name">
                 <label for="password">PASSWORD</label>
-                <input type="password" name="password" id="password" min="8">
+                <input type="password" name="password" id="password" minlength="3">
             </div>
-            <button>REGISTER</button>
-            <span><a href="index">Already have an account? Login here</a></span>
+            <input type="submit" value="REGISTER">
+            <span><a href="/">Already have an account? Login here</a></span>
         </fieldset>
     </form>
 </main>
+
 <footer>
     <p> &copy; Made by Tibo Krekelbergh, Luca Desmet and Jens Delorge</p>
 </footer>

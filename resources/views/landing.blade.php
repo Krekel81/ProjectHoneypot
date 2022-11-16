@@ -2,10 +2,10 @@
 <?php session_start();
 if(!($_SESSION["loggedIn"]))
 {
-    header("Location: index");
+    header("Location: /");
     exit();
 }
-    ?>
+?>
 <html id="landingPage" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,6 +48,19 @@ if(!($_SESSION["loggedIn"]))
                     </div>
                     <label for="files">Select Image</label>
                     <input id="files" style="visibility:hidden;" type="file">
+                    <form>
+                        <button name="btnLogout" id="btnLogout">Logout</button>
+                    </form>
+
+                    <?php
+                    if(isset($_GET['btnLogout']))
+                    {
+                        echo "<p>Logout</p>";
+                        $_SESSION["loggedIn"] = false;
+                        header("Location: /");
+                        exit();
+                    }
+                    ?>
                 </div>
             </div>
         </div>

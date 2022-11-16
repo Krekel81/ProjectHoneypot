@@ -15,9 +15,8 @@ use App\Http\Controllers\UserDemoController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ViewController::class, 'showIndex']);
+Route::get('/', [UserController::class, 'allUsersChecking']);
 
 Route::get('/register', [ViewController::class, 'showRegister']);
 
@@ -38,4 +37,4 @@ Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
 Route::get('/users', [UserDemoController::class, 'all']);
 Route::get('/users/{id}', [UserDemoController::class, 'get']);
 
-Route::get('/', [UserController::class, 'allUsersChecking']);
+

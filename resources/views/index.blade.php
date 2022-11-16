@@ -73,15 +73,16 @@ $_SESSION["loggedIn"] = false;
                         exit();
                     }
                     else {
-                        echo "<p style='color:red;'>Your password is invalid</p>";
+                        $message = "<p style='color:red;'>Your password is invalid</p>";
                     }
                 }
                 else {
-                    echo "<p style='color:red;'>This account does not exist</p>";
+                    $message = "<p style='color:red;'>This account does not exist</p>";
                 }
             }
+            echo $message;
         }
-?>
+    ?>
 </main>
 <footer>
     <p> &copy; Made by Tibo Krekelbergh, Luca Desmet and Jens Delorge</p>
