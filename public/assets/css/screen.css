@@ -69,7 +69,7 @@ main{
     margin-top: 6rem;
     line-height: 300%;
 }
-main form fieldset{ 
+main form fieldset{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,6 +98,22 @@ footer
 
 /* INDEX */
 html#index main
+{
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(20, 19, 19);
+    width: 25rem;
+    height: 25rem;
+    border-radius: 2rem;
+    opacity: 0.93;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+html#register main
 {
     margin-top: 6rem;
     display: flex;

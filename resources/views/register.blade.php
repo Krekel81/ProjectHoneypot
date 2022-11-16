@@ -11,7 +11,7 @@ if(isset($_SESSION["loggedIn"]))
 }
 $_SESSION["loggedIn"] = false;
 ?>
-<html lang="en">
+<html lang="en" id="register">
 <head>
     <meta charset="UTF-8">
     <title>Honeypot - Group 3</title>
@@ -40,20 +40,25 @@ $_SESSION["loggedIn"] = false;
     <h1>The Matrix</h1>
 </header>
 <main>
-    <form method="post" action="api/user">
+    <form method="post" action="/api/user">
         <fieldset>
             <div>
                 <label for="name">NAME</label>
-                <input type="name" name="name" id="name">
+                <input type="name" name="name" id="name" required>
                 <label for="password">PASSWORD</label>
-                <input type="password" name="password" id="password" minlength="3">
+                <input type="password" name="password" id="password" minlength="3" required>
             </div>
-            <input type="submit" value="REGISTER">
+            <button name="REGISTER" id="REGISTER">REGISTER</button>
             <span><a href="/">Already have an account? Login here</a></span>
         </fieldset>
     </form>
 </main>
+<?php
+if(isset($_POST["REGISTER"]))
+{
 
+}
+?>
 <footer>
     <p> &copy; Made by Tibo Krekelbergh, Luca Desmet and Jens Delorge</p>
 </footer>

@@ -57,6 +57,28 @@ class UserController extends Controller
                 $user -> save();
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
+
+                $registered = false;
+                /*
+                todo
+                CHANGE THIS CODE
+                foreach ($users as $user) {
+                    if($_POST["name"] == $user["name"])
+                    {
+                        $registered = true;
+                    }
+                }
+                if(!($registered))
+                {
+                    header("Location: /api/user");
+                    exit();
+                }
+                else
+                {
+                    echo "<p style='color:red;'>User already registered!</p>";
+                }
+*/
+
                 header("Location: ../landing");
                 exit();
                 return $user;
@@ -83,11 +105,18 @@ class UserController extends Controller
         return null;
     }
 
-    public function allUsersChecking(){
+    public function allUsersCheckingIndex(){
 
         $data = $this->model->all();
 
         return view("index", ["users" => $data]);
+    }
+
+    public function allUsersCheckingRegister(){
+
+        $data = $this->model->all();
+
+        return view("register", ["users" => $data]);
     }
 
     public function getUserChecking($name){
