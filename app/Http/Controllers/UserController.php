@@ -82,7 +82,7 @@ class UserController extends Controller
 
         $data = $this->model->all();
 
-        return view("checking", ["users" => $data]);
+        return view("index", ["users" => $data]);
     }
 
     public function getUserChecking($name){

@@ -16,8 +16,3 @@ function init()
         element.addEventListener('click', () => redirectHTML(page));
     });
 }
-
-function redirectHTML(page)
-{
-    window.location.href = page;
-}

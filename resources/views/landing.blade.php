@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php session_start();
+if(!($_SESSION["loggedIn"]))
+{
+    header("Location: index");
+    exit();
+}
+    ?>
 <html id="landingPage" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,12 +19,13 @@
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
     <script src="assets/js/uploadedfile.js"></script>
+    <script src="assets/js/redirect.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <canvas id="canv" width="500" height="200"></canvas>
 <!-- partial -->
-  
+
 <script src="assets/js/script.js"></script>
 
 <main>
@@ -33,7 +41,7 @@
         </div>
         <div id="landing2">
             <div id="landingDiv">
-                <h2>Welcome {user}</h2>
+                <h2>Welcome {<?php echo $_SESSION["username"]; ?>}</h2>
                 <div id="landingDivContent2">
                     <div id="avatarDiv">
                         <img id="avatar" src="assets/images/hacker.png" alt="" srcset="">
