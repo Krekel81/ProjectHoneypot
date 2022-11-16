@@ -41,44 +41,22 @@ class UserController extends Controller
     function buildRulesUsers()
     {
 
-        return ["name" =>  "required|string|min:1|max:50",
+        return ["name" =>  "required|string|min:1|max:50|unique:users",
                 "password" =>  "required|string|min:1|max:50"];
     }
     function checkIfInputIsValidUser($user, $validator)
     {
+        session_start();
         if(!($validator-> fails()))
             {
-                session_start();
                 $data = $validator->validate();
 
                 $user -> name = $data['name'];
                 $user -> password = $data['password'];
 
-                $user -> save();
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
-
-                $registered = false;
-                /*
-                todo
-                CHANGE THIS CODE
-                foreach ($users as $user) {
-                    if($_POST["name"] == $user["name"])
-                    {
-                        $registered = true;
-                    }
-                }
-                if(!($registered))
-                {
-                    header("Location: /api/user");
-                    exit();
-                }
-                else
-                {
-                    echo "<p style='color:red;'>User already registered!</p>";
-                }
-*/
-
+                $user -> save();
                 header("Location: ../landing");
                 exit();
                 return $user;
@@ -86,7 +64,11 @@ class UserController extends Controller
             //Returns the errors and statuscode 422
             //$statuscode = 422;
             //return response()->json(["errors" => $validator->errors()], $statuscode);
+
             Log::warning("Validation input error");
+            $_SESSION["registered"] = true;
+            header("Location: ../register");
+            exit();
             return response()->json(["errors" => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
     function getUser($userName)

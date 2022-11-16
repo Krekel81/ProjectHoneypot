@@ -52,13 +52,18 @@ $_SESSION["loggedIn"] = false;
             <span><a href="/">Already have an account? Login here</a></span>
         </fieldset>
     </form>
+    <?php
+        if(isset($_SESSION["registered"]))
+        {
+            if($_SESSION["registered"])
+            {
+                echo "<p style='color:red;'>User already registered!</p>";
+                $_SESSION["registered"] = false;
+            }
+        }
+        ?>
 </main>
-<?php
-if(isset($_POST["REGISTER"]))
-{
 
-}
-?>
 <footer>
     <p> &copy; Made by Tibo Krekelbergh, Luca Desmet and Jens Delorge</p>
 </footer>
