@@ -80,7 +80,8 @@ $_SESSION["loggedIn"] = false;
                     $message = "<p style='color:red;'>This account does not exist</p>";
                 }
             }
-            echo $message;
+            if(isset($message)) echo $message ; else echo "<p style='color:red;'>This account does not exist</p>";
+
         }
     ?>
 </main>

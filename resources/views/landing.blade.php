@@ -49,6 +49,7 @@ if(!($_SESSION["loggedIn"]))
                         <input name="files" id="files" type="file">
                         <input type="submit" value="Upload">
                     </form>
+                    <form>
                         <button name="btnLogout" id="btnLogout">Logout</button>
                     </form>
 
