@@ -64,7 +64,7 @@ $_SESSION["loggedIn"] = false;
                 $password = $user->password;
                 if($_GET["name"] == $username)
                 {
-                    if($_GET["password"] == $password)
+                    if(password_verify($_GET["password"], $password))
                     {
                         echo "<p style='color:green;'>You are logged in</p>";
                         $_SESSION["username"] = $username;

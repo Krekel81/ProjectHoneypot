@@ -53,12 +53,13 @@ class UserController extends Controller
                 $data = $validator->validate();
 
                 $user -> name = $data['name'];
-                $user -> password = $data['password'];
+                $passwordEncrypted = password_hash($data['password'], PASSWORD_DEFAULT);
+                $user -> password = $passwordEncrypted;
 
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
 
-                $this->createFolder($user['name']);
+                //$this->createFolder($user['name']);
 
                 $user -> save();
 
@@ -122,10 +123,13 @@ class UserController extends Controller
     }
 
     public function createFolder($name){
+        $path = public_path()."/assets/images/$name/";
+        File::makeDirectory($path, $mode = 0755, true, true);
+/*
         $path = "public/images/$name";
 
         Storage::makeDirectory($path, 0755, true);
-
+*/
         return Log::info("Successfully created folder");
 
     }
@@ -135,6 +139,12 @@ class UserController extends Controller
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
           ]);
+
+        $user = User::where('id', $id)->first();
+        $user->name = $request->name;
+        $user->save();
+
+
 
         $image = $request->image;
         Log::info($image, $request);

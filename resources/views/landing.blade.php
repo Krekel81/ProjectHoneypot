@@ -43,7 +43,7 @@ if(!($_SESSION["loggedIn"]))
                 <h2>Welcome {<?php echo $_SESSION["username"]; ?>}</h2>
                 <div id="landingDivContent2">
                     <div id="avatarDiv">
-                        <img id="avatar" src="assets/images/hacker.png" alt="" srcset="">
+                        <img id="avatar" src=<?php echo "assets/images/".$_SESSION["username"]."/image.png"; ?> alt="" srcset="">
                     </div>
                     <form method="POST" action="api/image">
                         <input name="files" id="files" type="file">

@@ -41,3 +41,4 @@ Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
 //Meneer Casier
 Route::get('/users', [UserDemoController::class, 'all']);
 Route::get('/users/{id}', [UserDemoController::class, 'get']);
+Route::get('/password', [UserDemoController::class, 'encrypt']);

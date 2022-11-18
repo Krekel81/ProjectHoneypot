@@ -25,4 +25,17 @@ class UserDemoController extends Controller
 
         return view("web.user", ["user" => $data]);
     }
+    public function encrypt()
+    {
+        $data = $this->model->first();
+
+        $passwordEncrypted = password_hash($data->password, PASSWORD_DEFAULT);
+
+        $passwordDecrypted = password_verify("tibo", $data->password);
+
+
+        if($passwordDecrypted) return view("web.password", ["password" => "SUCCESSFULLY"]);
+        else return view("web.password", ["password" => "DISMISSED"]);
+
+    }
 }
