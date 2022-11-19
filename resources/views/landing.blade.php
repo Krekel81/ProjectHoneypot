@@ -56,12 +56,14 @@ else
                     <h2>Welcome {<?php echo $_SESSION["username"]; /*Auth::user()->name;*/ ?>} </h2>
                     <div id="landingDivContent2">
                         <div id="avatarDiv">
-                            <img id="avatar" src=<?php echo "/uploads/avatars/".$_SESSION["username"]."/image.png"; ?> alt="" srcset="">
+                            <img id="avatar" src=assets/images/image.png<?php /*echo "/uploads/avatars/".$_SESSION["username"]."/image.png";*/ ?> alt="" srcset="">
                         </div>
+<!--
                         <form method="POST" action="api/image">
                             <input name="files" id="files" type="file">
                             <input type="submit" value="Upload">
                         </form>
+                        -->
                         <form>
                             <button name="btnLogout" id="btnLogout">Logout</button>
                         </form>

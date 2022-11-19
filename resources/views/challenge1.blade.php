@@ -28,7 +28,7 @@
                 <div id="question">
                     <p>When was the original Matrix released?</p>
                     <input type="text">
-                    <form action="api/challenge/1">
+                    <form action="api/challenge1/">
                         <button>Submit</button>
                     </form>
                 </div>
