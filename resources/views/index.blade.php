@@ -57,6 +57,7 @@ $_SESSION["loggedIn"] = false;
 
 
     <?php
+
         if(isset($_GET["name"]) && isset($_GET["password"]))
         {
             foreach ($users as $user) {
@@ -83,6 +84,7 @@ $_SESSION["loggedIn"] = false;
             if(isset($message)) echo $message ; else echo "<p style='color:red;'>This account does not exist</p>";
 
         }
+
     ?>
 </main>
 <footer>

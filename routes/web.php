@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDemoController;
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\UserDemoController;
 */
 
 Route::get('/', [ViewController::class, 'showIndex']);
+//Route::get('/login', [LoginController::class, 'authenticate']);
 Route::get('/', [UserController::class, 'allUsersCheckingIndex']);
 
 Route::get('/register', [ViewController::class, 'showRegister']);
@@ -24,11 +26,11 @@ Route::get('/register', [UserController::class, 'allUsersCheckingRegister']);
 Route::get('/landing', [ViewController::class, 'showLanding']);
 Route::get('/landing', [UserController::class, 'allUsersCheckingLanding']);
 
-Route::get('/challenge1.html', [ViewController::class, 'showChallenge1']);
-Route::get('/challenge2.html', [ViewController::class, 'showChallenge2']);
-Route::get('/challenge3.html', [ViewController::class, 'showChallenge3']);
-Route::get('/challenge4.html', [ViewController::class, 'showChallenge4']);
-Route::get('/challenge5.html', [ViewController::class, 'showChallenge5']);
+Route::get('/challenge1', [ViewController::class, 'showChallenge1']);
+Route::get('/challenge2', [ViewController::class, 'showChallenge2']);
+Route::get('/challenge3', [ViewController::class, 'showChallenge3']);
+Route::get('/challenge4', [ViewController::class, 'showChallenge4']);
+Route::get('/challenge5', [ViewController::class, 'showChallenge5']);
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
 Route::get('/test/test.php', [ViewController::class, 'showTest']);

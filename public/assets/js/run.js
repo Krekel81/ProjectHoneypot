@@ -12,7 +12,7 @@ function init()
     }
 */
     document.querySelectorAll("#challengeList button").forEach((element, index) => {
-        const page = "challenge" + (index+1) + ".html";
+        const page = "challenge" + (index+1);
         element.addEventListener('click', () => redirectHTML(page));
     });
 }

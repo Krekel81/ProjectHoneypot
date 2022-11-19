@@ -17,22 +17,23 @@
 <!-- partial:index.partial.html -->
 <canvas id="canv" width="500" height="200"></canvas>
 <!-- partial -->
-  
+
 <script src="assets/js/script.js"></script>
 
 <main>
     <div id="landings">
         <div class="landingChallenge">
-            <h1>Challenge 5</h1>
+            <h1>Challenge 2</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p> With which female character does Neo fall in love?</p>
+                    <p>Thomas Anderson is the real name of which character in The Matrix?</p>
                     <input type="text">
-                    <button>Submit</button>
+                    <form action="api/challenge2">
+                        <button>Submit</button>
+                    </form>
                 </div>
                 <img src="assets/images/the_matrix1.jpg" alt="">
-
-        </div>
+            </div>
         </div>
     </div>
 </main>

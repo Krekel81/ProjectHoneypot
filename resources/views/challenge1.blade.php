@@ -17,18 +17,20 @@
 <!-- partial:index.partial.html -->
 <canvas id="canv" width="500" height="200"></canvas>
 <!-- partial -->
-  
+
 <script src="assets/js/script.js"></script>
 
 <main>
     <div id="landings">
         <div class="landingChallenge">
-            <h1>Challenge 4</h1>
+            <h1>Challenge 1</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p>Which piece of technology do awakened humans use to exit the Matrix from inside?</p>
+                    <p>When was the original Matrix released?</p>
                     <input type="text">
-                    <button>Submit</button>
+                    <form action="api/challenge/1">
+                        <button>Submit</button>
+                    </form>
                 </div>
                 <img src="assets/images/the_matrix1.jpg" alt="">
 

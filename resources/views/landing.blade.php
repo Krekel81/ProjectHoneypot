@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <?php session_start();
-if(!($_SESSION["loggedIn"]))
+if(isset($_SESSION['loggedIn']))
 {
+    if(!($_SESSION["loggedIn"]))
+    {
+        header("Location: /");
+        exit();
+    }
+}
+else
+{
+    $_SESSION['loggedIn'] = false;
     header("Location: /");
     exit();
 }
@@ -40,29 +49,34 @@ if(!($_SESSION["loggedIn"]))
         </div>
         <div id="landing2">
             <div id="landingDiv">
-                <h2>Welcome {<?php echo $_SESSION["username"]; ?>}</h2>
-                <div id="landingDivContent2">
-                    <div id="avatarDiv">
-                        <img id="avatar" src=<?php echo "assets/images/".$_SESSION["username"]."/image.png"; ?> alt="" srcset="">
-                    </div>
-                    <form method="POST" action="api/image">
-                        <input name="files" id="files" type="file">
-                        <input type="submit" value="Upload">
-                    </form>
-                    <form>
-                        <button name="btnLogout" id="btnLogout">Logout</button>
-                    </form>
+                @if (Auth::user())
+                    <li><a href="{{ url('/') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>
+                @else
+                    <h2>Welcome {<?php echo $_SESSION["username"]; /*Auth::user()->name;*/ ?>} </h2>
+                    <div id="landingDivContent2">
+                        <div id="avatarDiv">
+                            <img id="avatar" src=<?php echo "/uploads/avatars/".$_SESSION["username"]."/image.png"; ?> alt="" srcset="">
+                        </div>
+                        <form method="POST" action="api/image">
+                            <input name="files" id="files" type="file">
+                            <input type="submit" value="Upload">
+                        </form>
+                        <form>
+                            <button name="btnLogout" id="btnLogout">Logout</button>
+                        </form>
 
-                    <?php
-                    if(isset($_GET['btnLogout']))
-                    {
-                        echo "<p>Logout</p>";
-                        $_SESSION["loggedIn"] = false;
-                        header("Location: /");
-                        exit();
-                    }
-                    ?>
-                </div>
+                        <?php
+                        if(isset($_GET['btnLogout']))
+                        {
+                            echo "<p>Logout</p>";
+                            $_SESSION["loggedIn"] = false;
+                            header("Location: /");
+                            exit();
+                        }
+                        ?>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

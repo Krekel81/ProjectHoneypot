@@ -17,7 +17,7 @@
 <!-- partial:index.partial.html -->
 <canvas id="canv" width="500" height="200"></canvas>
 <!-- partial -->
-  
+
 <script src="assets/js/script.js"></script>
 
 <main>
@@ -28,7 +28,9 @@
                 <div id="question">
                     <p>Humanity is trapped inside a simulation known as the Matrix, but what century of our history does it simulate?</p>
                     <input type="text">
-                    <button>Submit</button>
+                    <form action="api/challenge3">
+                        <button>Submit</button>
+                    </form>
                 </div>
                 <img src="assets/images/the_matrix1.jpg" alt="">
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
     {
 
         return ["name" =>  "required|string|min:1|max:50|unique:users",
-                "password" =>  "required|string|min:1|max:50"];
+                "password" =>  "required|string|min:1"];
     }
     function checkIfInputIsValidUser($user, $validator)
     {
@@ -150,5 +151,62 @@ class UserController extends Controller
         Log::info($image, $request);
         return $image;
     }
+
+    public function completedChallenge1()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+        $user->challenge1 = true;
+
+        $user->save();
+
+        return $user;
+    }
+    public function completedChallenge2()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+        $user->challenge2 = true;
+
+        $user->save();
+
+        return $user;
+    }
+    public function completedChallenge3()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+        $user->challenge3 = true;
+
+        $user->save();
+
+        return $user;
+    }
+    public function completedChallenge4()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+        $user->challenge4 = true;
+
+        $user->save();
+
+        return $user;
+    }
+    public function completedChallenge5()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+        $user->challenge5 = true;
+
+        $user->save();
+
+        return $user;
+    }
+
 
 }
