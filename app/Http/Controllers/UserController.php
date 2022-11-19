@@ -152,60 +152,80 @@ class UserController extends Controller
         return $image;
     }
 
-    public function completedChallenge1()
+    public function completedChallenge1(Request $request)
     {
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
-        $user->challenge1 = true;
 
-        $user->save();
-
-        return $user;
+        if($request->input == "1999")
+        {
+            $user->challenge1 = true;
+            $user->save();
+            return redirect()->intended('landing');
+        }
+        $_SESSION["challenge"] = "failed";
+        return redirect()->intended('challenge1');
     }
-    public function completedChallenge2()
+    public function completedChallenge2(Request $request)
     {
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
-        $user->challenge2 = true;
 
-        $user->save();
-
-        return $user;
+        if($request->input == "neo" || $request->input == "Neo")
+        {
+            $user->challenge2 = true;
+            $user->save();
+            return redirect()->intended('landing');
+        }
+        $_SESSION["challenge"] = "failed";
+        return redirect()->intended('challenge2');
     }
-    public function completedChallenge3()
+    public function completedChallenge3(Request $request)
     {
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
-        $user->challenge3 = true;
 
-        $user->save();
-
-        return $user;
+        if($request->input == "21")
+        {
+            $user->challenge3 = true;
+            $user->save();
+            return redirect()->intended('landing');
+        }
+        $_SESSION["challenge"] = "failed";
+        return redirect()->intended('challenge3');
     }
-    public function completedChallenge4()
+    public function completedChallenge4(Request $request)
     {
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
-        $user->challenge4 = true;
 
-        $user->save();
-
-        return $user;
+        if($request->input == "telephone" || $request->input == "telephones" || $request->input == "Telephone" || $request->input == "Telephones")
+        {
+            $user->challenge4 = true;
+            $user->save();
+            return redirect()->intended('landing');
+        }
+        $_SESSION["challenge"] = "failed";
+        return redirect()->intended('challenge4');
     }
-    public function completedChallenge5()
+    public function completedChallenge5(Request $request)
     {
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
-        $user->challenge5 = true;
 
-        $user->save();
-
-        return $user;
+        if($request->input == "Trinity" || $request->input == "trinity")
+        {
+            $user->challenge5 = true;
+            $user->save();
+            return redirect()->intended('landing');
+        }
+        $_SESSION["challenge"] = "failed";
+        return redirect()->intended('challenge5');
     }
 
 

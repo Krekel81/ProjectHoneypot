@@ -279,3 +279,10 @@ html#landingChallenge img
     height: 70%;
     object-fit: contain;
 }
+/* Challenges */
+.challengeFailed
+{
+    position: absolute;
+    color: red;
+    bottom: 10%;
+}

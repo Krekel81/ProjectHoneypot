@@ -1,3 +1,19 @@
+<?php session_start();
+if(isset($_SESSION['loggedIn']))
+{
+    if(!($_SESSION["loggedIn"]))
+    {
+        header("Location: /");
+        exit();
+    }
+}
+else
+{
+    $_SESSION['loggedIn'] = false;
+    header("Location: /");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html id="landingChallenge" lang="en">
 <head>
@@ -27,13 +43,22 @@
             <div id="landingChallengeContent">
                 <div id="question">
                     <p>When was the original Matrix released?</p>
-                    <input type="text">
                     <form action="api/challenge1/">
+                    <input type="text" name="input">
                         <button>Submit</button>
                     </form>
                 </div>
                 <img src="assets/images/the_matrix1.jpg" alt="">
-
+        <?php
+        if(isset($_SESSION["challenge"]))
+        {
+            if($_SESSION["challenge"] == "failed")
+            {
+                echo "<p class='challengeFailed'>Challenge 1 failed, try again</p>";
+                $_SESSION["challenge"] = "attempt";
+            }
+        }
+        ?>
         </div>
         </div>
     </div>
