@@ -40,11 +40,11 @@ else
     <div id="landings">
         <div id="landing1">
             <ul id="challengeList">
-                <li><button>Challenge 1</button></li>
-                <li><button>Challenge 2</button></li>
-                <li><button>Challenge 3</button></li>
-                <li><button>Challenge 4</button></li>
-                <li><button>Challenge 5</button></li>
+                <li><button>Challenge 1</button><?php echo $user->challenge1 ? "<p>Completed</p>" : "<p style='color:red;'>Not Completed</p>"; ?></li>
+                <li><button>Challenge 2</button><?php echo $user->challenge2 ? "<p>Completed</p>" : "<p style='color:red;'>Not Completed</p>"; ?></li>
+                <li><button>Challenge 3</button><?php echo $user->challenge3 ? "<p>Completed</p>" : "<p style='color:red;'>Not Completed</p>"; ?></li>
+                <li><button>Challenge 4</button><?php echo $user->challenge4 ? "<p>Completed</p>" : "<p style='color:red;'>Not Completed</p>"; ?></li>
+                <li><button>Challenge 5</button><?php echo $user->challenge5 ? "<p>Completed</p>" : "<p style='color:red;'>Not Completed</p>"; ?></li>
             </ul>
         </div>
         <div id="landing2">

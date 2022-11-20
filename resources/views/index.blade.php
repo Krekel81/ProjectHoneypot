@@ -81,10 +81,10 @@ $_SESSION["loggedIn"] = false;
                     }
                 }
                 else {
-                    echo "<p style='color:red;'>This account does not exist</p>";
-                    exit();
+                    $message = "<p style='color:red;'>This account does not exist</p>";
                 }
             }
+            echo $message;
         }
 
     ?>

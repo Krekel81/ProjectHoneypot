@@ -178,13 +178,25 @@ html#landingPage #challengeList
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    margin-bottom: 2rem;
+    width: 100%;
 }
 html#landingPage #challengeList button
 {
-    padding: 1rem 5rem 1rem 5rem;
-    width: 100%;
+    margin-top: 0rem;
+    padding: 1rem 4rem 1rem 4rem;
+    width: 15rem;
     transition: 0.5s;
+}
+html#landingPage #challengeList li
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+html#landingPage #challengeList li p
+{
+    margin-left: 1rem;
 }
 /* welcomeboard */
 
