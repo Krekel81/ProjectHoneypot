@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php session_start();
+<?php
 if(isset($_SESSION['loggedIn']))
 {
     if(!($_SESSION["loggedIn"]))
@@ -53,17 +53,18 @@ else
                     <li><a href="{{ url('/') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
-                    <h2>Welcome {<?php echo $_SESSION["username"]; /*Auth::user()->name;*/ ?>} </h2>
+                    <h2>Welcome {<?php echo $user->name; ?>} </h2>
                     <div id="landingDivContent2">
                         <div id="avatarDiv">
-                            <img id="avatar" src=assets/images/image.png<?php /*echo "/uploads/avatars/".$_SESSION["username"]."/image.png";*/ ?> alt="" srcset="">
+                            <img id="avatar" src=<?php echo "/uploads/avatars/$user->name/$user->avatar"; ?> alt="" srcset="" class="avatar">
                         </div>
-<!--
-                        <form method="POST" action="api/image">
-                            <input name="files" id="files" type="file">
-                            <input type="submit" value="Upload">
+
+                        <form enctype="multipart/form-data" method="POST" action="/landing">
+                            <input name="avatar" id="files" type="file" required />
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button name="submit">Upload</button>
                         </form>
-                        -->
+
                         <form>
                             <button name="btnLogout" id="btnLogout">Logout</button>
                         </form>

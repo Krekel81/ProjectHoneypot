@@ -74,15 +74,15 @@ $_SESSION["loggedIn"] = false;
                         exit();
                     }
                     else {
-                        $message = "<p style='color:red;'>Your password is invalid</p>";
+                        echo "<p style='color:red;'>Your password is invalid</p>";
+                        exit();
                     }
                 }
                 else {
-                    $message = "<p style='color:red;'>This account does not exist</p>";
+                    echo "<p style='color:red;'>This account does not exist</p>";
+                    exit();
                 }
             }
-            if(isset($message)) echo $message ; else echo "<p style='color:red;'>This account does not exist</p>";
-
         }
 
     ?>

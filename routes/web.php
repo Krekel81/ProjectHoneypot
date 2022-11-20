@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UserController;
@@ -24,7 +25,8 @@ Route::get('/register', [ViewController::class, 'showRegister']);
 Route::get('/register', [UserController::class, 'allUsersCheckingRegister']);
 
 Route::get('/landing', [ViewController::class, 'showLanding']);
-Route::get('/landing', [UserController::class, 'allUsersCheckingLanding']);
+Route::get('/landing', [UserController::class, 'getUserCheckingLanding']);
+Route::post('/landing', [ImageController::class, 'uploadImage']);
 
 Route::get('/challenge1', [ViewController::class, 'showChallenge1']);
 Route::get('/challenge2', [ViewController::class, 'showChallenge2']);

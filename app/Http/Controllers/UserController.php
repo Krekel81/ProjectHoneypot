@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -110,11 +111,12 @@ class UserController extends Controller
         return view("register", ["users" => $data]);
     }
 
-    public function allUsersCheckingLanding(){
+    public function getUserCheckingLanding(){
+        session_start();
 
-        $data = $this->model->all();
+        $user = User::where("name", $_SESSION["username"])->first();
 
-        return view("landing", ["users" => $data]);
+        return view("landing", ["user" => $user]);
     }
 
     public function getUserChecking($name){
@@ -124,8 +126,8 @@ class UserController extends Controller
     }
 
     public function createFolder($name){
-        $path = public_path()."/assets/images/$name/";
-        File::makeDirectory($path, $mode = 0755, true, true);
+        $path = public_path()."/uploads/avatars/$name/";
+        File::makeDirectory($path, 0755, true, true);
 /*
         $path = "public/images/$name";
 
@@ -133,23 +135,6 @@ class UserController extends Controller
 */
         return Log::info("Successfully created folder");
 
-    }
-
-    public function uploadImage(Request $request)
-    {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-          ]);
-
-        $user = User::where('id', $id)->first();
-        $user->name = $request->name;
-        $user->save();
-
-
-
-        $image = $request->image;
-        Log::info($image, $request);
-        return $image;
     }
 
     public function completedChallenge1(Request $request)

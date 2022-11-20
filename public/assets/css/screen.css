@@ -162,6 +162,7 @@ html#landingPage div#landing2
     width: 35%;
     height: 80%;
     border-radius: 2rem;
+    justify-content: center;
 }
 html#landingPage main
 {
@@ -208,9 +209,9 @@ html#landingPage div#avatarDiv
 }
 html#landingPage #avatar
 {
+    width: 6rem;
     background-repeat: no-repeat;
     object-fit: contain;
-    width: 20%;
     border-radius: 50%;
     border: 0.2rem solid white;
 }
@@ -242,6 +243,24 @@ html#landingPage #landingDiv
     justify-content: center;
     flex-direction: column;
 }
+
+html#landingPage button#btnLogout{
+    width: 10rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    background-color: #575f7762;
+    color: rgba(216, 96, 48, 0.945);
+    border-radius: 0.5rem;
+    margin-top: 5rem;
+    cursor: pointer;
+}
+
+html#landingPage button#btnLogout:hover
+{
+    color:white;
+    background-color: rgba(216, 96, 48, 0.945);
+}
+
 /* Challenges */
 html#landingChallenge main
 {
