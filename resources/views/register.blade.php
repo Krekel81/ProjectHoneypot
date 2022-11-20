@@ -9,6 +9,8 @@ if(isset($_SESSION["loggedIn"]))
         exit();
     }
 }
+if(isset($_SESSION["username"])) $_SESSION["username"] = "";
+else $_SESSION["username"] = "";
 $_SESSION["loggedIn"] = false;
 ?>
 <html lang="en" id="register">

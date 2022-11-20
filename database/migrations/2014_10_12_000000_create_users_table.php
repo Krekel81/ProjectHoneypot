@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('password');
+            $table->boolean('admin')->default(false);
             $table->boolean('challenge1')->default(false);
             $table->boolean('challenge2')->default(false);
             $table->boolean('challenge3')->default(false);

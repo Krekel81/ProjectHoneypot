@@ -49,9 +49,12 @@ else
         </div>
         <div id="landing2">
             <div id="landingDiv">
-                @if (Auth::user())
-                    <li><a href="{{ url('/') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                @if ($user == null)
+                    <?php
+                    $_SESSION["loggedIn"] = false;
+                    header("Location: /");
+                    exit();
+                    ?>
                 @else
                     <h2>Welcome {<?php echo $user->name; ?>} </h2>
                     <div id="landingDivContent2">

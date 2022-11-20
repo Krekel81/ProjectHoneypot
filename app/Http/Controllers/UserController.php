@@ -39,6 +39,7 @@ class UserController extends Controller
     {
         Log::info("Deleting all users");
         User::truncate();
+        File::cleanDirectory(public_path('/uploads/avatars/'));
         return "All users were successfully deleted, new user object = ".User::all();
     }
     function buildRulesUsers()
