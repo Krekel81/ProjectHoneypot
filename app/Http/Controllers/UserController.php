@@ -61,11 +61,9 @@ class UserController extends Controller
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
 
-                //$this->createFolder($user['name']);
-
                 $user -> save();
 
-
+                $this->createFolder($user["name"]);
 
                 header("Location: ../landing");
                 exit();
@@ -128,13 +126,11 @@ class UserController extends Controller
     public function createFolder($name){
         $path = public_path()."/uploads/avatars/$name/";
         File::makeDirectory($path, 0755, true, true);
-/*
-        $path = "public/images/$name";
 
-        Storage::makeDirectory($path, 0755, true);
-*/
+        $user = User::where("name", $name)->first();
+        File::copy(public_path('default.jpg'), public_path('/uploads/avatars/'.$name.'/'.$user->avatar));
+
         return Log::info("Successfully created folder");
-
     }
 
     public function completedChallenge1(Request $request)

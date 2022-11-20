@@ -212,7 +212,7 @@ html#landingPage #avatar
     width: 6rem;
     background-repeat: no-repeat;
     object-fit: contain;
-    border-radius: 50%;
+    border-radius: 5%;
     border: 0.2rem solid white;
 }
 html#landingPage input#files
