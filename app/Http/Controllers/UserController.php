@@ -210,5 +210,22 @@ class UserController extends Controller
         return redirect()->intended('challenge5');
     }
 
+    function getUserCheckingAdmin()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        if($user->admin)
+        {
+            $users = $this->getUsers();
+            return view("admin.admin", $users);
+        }
+        else
+        {
+            return view("Unauthorized", ["user" => $user]);
+        }
+    }
+
 
 }

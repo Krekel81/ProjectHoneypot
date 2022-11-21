@@ -28,6 +28,9 @@ Route::get('/landing', [ViewController::class, 'showLanding']);
 Route::get('/landing', [UserController::class, 'getUserCheckingLanding']);
 Route::post('/landing', [ImageController::class, 'uploadImage']);
 
+//Route::get('/admin', [ViewController::class, 'showAdmin']);
+Route::get('/admin', [UserController::class, 'GetUserCheckingAdmin']);
+
 Route::get('/challenge1', [ViewController::class, 'showChallenge1']);
 Route::get('/challenge2', [ViewController::class, 'showChallenge2']);
 Route::get('/challenge3', [ViewController::class, 'showChallenge3']);
@@ -43,6 +46,8 @@ Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
 
 
 //Meneer Casier
+/*
 Route::get('/users', [UserDemoController::class, 'all']);
 Route::get('/users/{id}', [UserDemoController::class, 'get']);
 Route::get('/password', [UserDemoController::class, 'encrypt']);
+*/

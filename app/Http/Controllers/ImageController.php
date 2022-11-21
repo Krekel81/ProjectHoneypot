@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class ImageController extends Controller
 {
@@ -18,9 +19,9 @@ class ImageController extends Controller
             $avatar = $request->file('avatar');
             $filename = time().'.'.$avatar->getClientOriginalExtension();
 
-            $avatar->move(public_path('/uploads/avatars/'.$user->name.'/'), $filename);
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/'.$user->name.'/'.$filename));
 
-            //$avatar->resize(300,300)->move(public_path('/uploads/avatars/'.$user->name.'/'), $filename);
+            //$avatar->move(public_path('/uploads/avatars/'.$user->name.'/'), $filename);
 
             $user->avatar = $filename;
             $user->save();

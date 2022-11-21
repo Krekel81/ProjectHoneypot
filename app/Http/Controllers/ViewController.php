@@ -39,6 +39,10 @@ class ViewController extends Controller
     {
         return view('challenge5');
     }
+    public function showAdmin()
+    {
+        return view('admin.admin');
+    }
     public function helloworld()
     {
         return "<h1>Hello World!</h1>";

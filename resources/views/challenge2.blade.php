@@ -1,7 +1,7 @@
 <?php session_start();
 if(isset($_SESSION['loggedIn']))
 {
-    if(!($_SESSION["loggedIn"]))
+    if(!($_SESSION["loggedIn"]) || $user->disabled)
     {
         header("Location: /");
         exit();

@@ -1,7 +1,7 @@
 <?php session_start();
 if(isset($_SESSION['loggedIn']))
 {
-    if(!($_SESSION["loggedIn"]) || $user->disabled)
+    if(!($_SESSION["loggedIn"]))
     {
         header("Location: /");
         exit();
@@ -15,7 +15,7 @@ else
 }
 ?>
 <!DOCTYPE html>
-<html id="landingChallenge" lang="en">
+<html id="notAuthorized" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Honeypot - Group 3</title>
@@ -38,29 +38,8 @@ else
 
 <main>
     <div id="landings">
-        <div class="landingChallenge">
-            <h1>Challenge 1</h1>
-            <div id="landingChallengeContent">
-                <div id="question">
-                    <p>When was the original Matrix released?</p>
-                    <form action="api/challenge1/">
-                    <input type="text" name="input">
-                        <button>Submit</button>
-                    </form>
-                </div>
-                <img src="assets/images/the_matrix1.jpg" alt="">
-        <?php
-        if(isset($_SESSION["challenge"]))
-        {
-            if($_SESSION["challenge"] == "failed")
-            {
-                echo "<p class='challengeFailed'>Challenge 1 failed, try again</p>";
-                $_SESSION["challenge"] = "attempt";
-            }
-        }
-        ?>
-        </div>
-        </div>
+        <h1>401 Unauthorized</h1>
+        <p>You are unauthorized to see this page!</p>
     </div>
 </main>
 </body>

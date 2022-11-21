@@ -2,7 +2,7 @@
 <?php
 if(isset($_SESSION['loggedIn']))
 {
-    if(!($_SESSION["loggedIn"]))
+    if(!($_SESSION["loggedIn"]) || $user->disabled)
     {
         header("Location: /");
         exit();
@@ -68,6 +68,20 @@ else
                             <button name="submit">Upload</button>
                         </form>
 
+
+                        <?php
+                        if($user->admin)
+                        {
+                            echo "<form method=''><button name='admin'>Admin</button</form>";
+                            if(isset($_GET['admin']))
+                            {
+                                header("Location: /admin");
+                                exit();
+                            }
+                        }
+
+                        ?>
+
                         <form>
                             <button name="btnLogout" id="btnLogout">Logout</button>
                         </form>
@@ -77,6 +91,7 @@ else
                         {
                             echo "<p>Logout</p>";
                             $_SESSION["loggedIn"] = false;
+                            $_SESSION["username"] = "";
                             header("Location: /");
                             exit();
                         }
