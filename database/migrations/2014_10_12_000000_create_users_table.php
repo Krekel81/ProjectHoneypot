@@ -11,17 +11,21 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('name', 50);
             $table->string('password');
-            $table->rememberToken();
-            $table->foreignId('current_team_id')->nullable();
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->boolean('admin')->default(false);
+            $table->boolean('challenge1')->default(false);
+            $table->boolean('challenge2')->default(false);
+            $table->boolean('challenge3')->default(false);
+            $table->boolean('challenge4')->default(false);
+            $table->boolean('challenge5')->default(false);
+            $table->boolean('disabled')->default(false);
+            $table->string('avatar')->default('default.jpg');
             $table->timestamps();
         });
     }

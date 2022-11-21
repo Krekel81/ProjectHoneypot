@@ -113,7 +113,7 @@ class UserController extends Controller
     public function getUserCheckingLanding(){
         session_start();
 
-        $user = Auth::user();
+        $user = User::where("name", $_SESSION["username"])->first();
 
         return view("landing", ["user" => $user]);
     }
