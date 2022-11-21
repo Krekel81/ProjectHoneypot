@@ -6,6 +6,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserDemoController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,18 +25,17 @@ Route::get('/', [UserController::class, 'allUsersCheckingIndex']);
 Route::get('/register', [ViewController::class, 'showRegister']);
 Route::get('/register', [UserController::class, 'allUsersCheckingRegister']);
 
-Route::get('/landing', [ViewController::class, 'showLanding']);
 Route::get('/landing', [UserController::class, 'getUserCheckingLanding']);
 Route::post('/landing', [ImageController::class, 'uploadImage']);
 
 //Route::get('/admin', [ViewController::class, 'showAdmin']);
 Route::get('/admin', [UserController::class, 'GetUserCheckingAdmin']);
 
-Route::get('/challenge1', [ViewController::class, 'showChallenge1']);
-Route::get('/challenge2', [ViewController::class, 'showChallenge2']);
-Route::get('/challenge3', [ViewController::class, 'showChallenge3']);
-Route::get('/challenge4', [ViewController::class, 'showChallenge4']);
-Route::get('/challenge5', [ViewController::class, 'showChallenge5']);
+Route::get('/challenge1', [UserController::class, 'getUserChallenge1']);
+Route::get('/challenge2', [UserController::class, 'getUserChallenge2']);
+Route::get('/challenge3', [UserController::class, 'getUserChallenge3']);
+Route::get('/challenge4', [UserController::class, 'getUserChallenge4']);
+Route::get('/challenge5', [UserController::class, 'getUserChallenge5']);
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
 Route::get('/test/test.php', [ViewController::class, 'showTest']);
@@ -51,3 +51,13 @@ Route::get('/users', [UserDemoController::class, 'all']);
 Route::get('/users/{id}', [UserDemoController::class, 'get']);
 Route::get('/password', [UserDemoController::class, 'encrypt']);
 */
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

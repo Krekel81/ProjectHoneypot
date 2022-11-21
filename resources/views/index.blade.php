@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-session_start();
 if(isset($_SESSION["loggedIn"]))
 {
     if($_SESSION["loggedIn"])
@@ -68,6 +67,7 @@ $_SESSION["loggedIn"] = false;
                     if(password_verify($_GET["password"], $password))
                     {
                         echo "<p style='color:green;'>You are logged in</p>";
+                        Auth::attempt(['name' => $username, 'password' => $password]);
                         $_SESSION["username"] = $username;
                         $_SESSION["loggedIn"] = true;
                         header("Location: landing");

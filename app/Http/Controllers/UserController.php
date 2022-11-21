@@ -8,8 +8,8 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -113,7 +113,7 @@ class UserController extends Controller
     public function getUserCheckingLanding(){
         session_start();
 
-        $user = User::where("name", $_SESSION["username"])->first();
+        $user = Auth::user();
 
         return view("landing", ["user" => $user]);
     }
@@ -213,18 +213,73 @@ class UserController extends Controller
     function getUserCheckingAdmin()
     {
         session_start();
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        if($user->admin)
+        if(isset($_SESSION["username"]))
         {
-            $users = $this->getUsers();
-            return view("admin.admin", $users);
+            if($_SESSION["username"] != "")
+            {
+                $user = User::where("name", $_SESSION["username"])->first();
+
+                if($user->admin)
+                {
+                    $users = $this->getUsers();
+                    return view("admin", $users);
+                }
+                else
+                {
+                    return view("Unauthorized", ["user" => $user]);
+                }
+            }
+            else
+            {
+                return redirect()->intended('/');
+            }
         }
         else
         {
-            return view("Unauthorized", ["user" => $user]);
+            return redirect()->intended('/');
         }
+
+    }
+
+    function getUserChallenge1()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        return view("challenge1", ["user" => $user]);
+    }
+    function getUserChallenge2()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        return view("challenge2", ["user" => $user]);
+    }
+    function getUserChallenge3()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        return view("challenge3", ["user" => $user]);
+    }
+    function getUserChallenge4()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        return view("challenge4", ["user" => $user]);
+    }
+    function getUserChallenge5()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        return view("challenge5", ["user" => $user]);
     }
 
 
