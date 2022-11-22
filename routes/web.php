@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
@@ -33,6 +34,7 @@ Route::get('/admin', [UserController::class, 'GetUserCheckingAdmin']);
 
 Route::get('/challenge1', [UserController::class, 'getUserChallenge1']);
 Route::get('/challenge2', [UserController::class, 'getUserChallenge2']);
+Route::get('/challenge3', [ChallengeController::class, 'setCookie']);
 Route::get('/challenge3', [UserController::class, 'getUserChallenge3']);
 Route::get('/challenge4', [UserController::class, 'getUserChallenge4']);
 Route::get('/challenge5', [UserController::class, 'getUserChallenge5']);

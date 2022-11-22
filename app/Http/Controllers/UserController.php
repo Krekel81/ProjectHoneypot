@@ -170,7 +170,7 @@ class UserController extends Controller
 
         $user = User::where("name", $_SESSION["username"])->first();
 
-        if($request->input == "21")
+        if($request->input == "Th3M4tr1x-MyN4m315Morph3u5")
         {
             $user->challenge3 = true;
             $user->save();
@@ -281,6 +281,8 @@ class UserController extends Controller
     function getUserChallenge3()
     {
         session_start();
+
+        setcookie("Flag", "Th3M4tr1x-MyN4m315Morph3u5", time()+3600);
 
         $user = User::where("name", $_SESSION["username"])->first();
 

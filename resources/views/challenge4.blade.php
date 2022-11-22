@@ -42,7 +42,7 @@ else
             <h1>Challenge 4</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p>Morpheus lost his redpill, help him retrieve the pill from the database.</p>
+                    <p>Morpheus lost his red pill, help him retrieve the pill from the database.</p>
                     <form action="api/challenge4">
 
                     <input type="text" name="input">
