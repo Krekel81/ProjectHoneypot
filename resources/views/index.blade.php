@@ -71,6 +71,11 @@ $_SESSION["loggedIn"] = false;
                 {
                     if(password_verify($_GET["password"], $password))
                     {
+                        if($user->disabled)
+                        {
+                            echo "<p style='color:red;'>Your account is disabled!</p>";
+                            exit();
+                        }
                         echo "<p style='color:green;'>You are logged in</p>";
                         $_SESSION["username"] = $username;
                         $_SESSION["loggedIn"] = true;

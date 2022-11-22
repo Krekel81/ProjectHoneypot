@@ -231,6 +231,19 @@ class UserController extends Controller
         return redirect()->intended('landing');
     }
 
+    function toggleDisableUser($user)
+    {
+        session_start();
+
+        $user = User::where("name", $user)->first();
+
+        $user->disabled =! $user->disabled;
+        $user->save();
+
+        return redirect()->intended('admin');
+
+    }
+
     function getUserCheckingAdmin()
     {
         session_start();

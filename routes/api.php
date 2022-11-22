@@ -27,6 +27,6 @@ Route::get('/challenge3', [UserController::class, 'completedChallenge3']);
 Route::get('/challenge4', [UserController::class, 'completedChallenge4']);
 Route::get('/challenge5', [UserController::class, 'completedChallenge5']);
 
-Route::patch('/challenge5', [UserController::class, 'completedChallenge5']);
+Route::get('/toggleDisableUser/{user}', [UserController::class, 'toggleDisableUser']);
 
 Route::post('/image', [UserController::class, 'uploadImage']);

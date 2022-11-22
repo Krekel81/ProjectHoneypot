@@ -51,7 +51,9 @@ else
                             <th>Challenge3</th>
                             <th>Challenge4</th>
                             <th>Challenge5</th>
+                            <th>Status</th>
                         </tr>
+                        <form method="" name="disabled">
                         @foreach ($users as $user)
 
                         <tr>
@@ -61,14 +63,20 @@ else
                             <td><?php echo $user->challenge3 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
                             <td><?php echo $user->challenge4 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
                             <td><?php echo $user->challenge5 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
-                            <td><form method=""><button class="red" id="{{ $user->name }}" name="Disable">Disable</button></form></td>
+                            <td><?php echo $user->disabled ? "<p style='color:red;'>Disabled</p>" : "<p>Active</p>"; ?></td>
+                            <td><input type="submit" name="{{ $user->name }}" value="<?php echo $user->disabled ? "Enable" : "Disable"; ?>" class="<?php echo $user->disabled ? "enableButtonAdmin" : "disableButtonAdmin"; ?>" name="disable" /></td>
                         </tr>
                         @endforeach
+                    </form>
                         <?php
-                        if(isset($_GET["Disable"]))
+                        foreach($_GET as $key=>$value)
                         {
-                            echo "User is disabled";
-                        } ?>
+                            $post[$key] = $value;
+                            header("Location: api/toggleDisableUser/$key");
+                            exit();
+                        }
+
+                        ?>
                     </div>
                     </table>
             </div>

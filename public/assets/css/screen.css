@@ -422,3 +422,11 @@ html#landingChallenge div#question
 {
     margin-top: 3rem;
 }
+html#admin input.disableButtonAdmin
+{
+    color:red;
+}
+html#admin input.disableButtonAdmin.enableButtonAdmin
+{
+    color:rgb(115, 234, 0);
+}
