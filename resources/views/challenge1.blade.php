@@ -42,14 +42,14 @@ else
             <h1>Challenge 1</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p>Morpheus broke his important glasses. He would like to have a new one made, but doesn't know which actor to go to?</p>
+                    <p>Morpheus broke his important glasses.<br> He would like to have a new one made.</p>
                     <!-- TIP: You should really look at the details of the glasses -->
                     <form action="api/challenge1/">
                     <input type="text" name="input">
                         <button>Submit</button>
                     </form>
                 </div>
-                <img src="assets/images/sunglasses.png" alt="">
+                <img id="sunglasses" src="assets/images/sunglasses.png" alt="">
         <?php
         if(isset($_SESSION["challenge"]))
         {
@@ -62,7 +62,7 @@ else
         ?>
         </div>
         <form action="landing">
-            <button id="goBack">Go back</button>
+            <button id="go">Go back</button>
         </form>
         </div>
     </div>

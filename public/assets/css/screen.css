@@ -402,11 +402,23 @@ html#admin button.red:hover
     color:white;
     background-color: rgba(255, 72, 0, 0.945);
 }
-#goBack
+html#landingChallenge button#goBack
 {
     position: absolute;
     bottom: 7%;
     left: 8%;
     margin-left: auto;
     margin-right: auto;
+}
+html#landingChallenge main#c1 #question
+{
+    margin-top: 0rem;
+}
+html#landingChallenge img#sunglasses
+{
+    height: 50%;
+}
+html#landingChallenge div#question
+{
+    margin-top: 3rem;
 }
