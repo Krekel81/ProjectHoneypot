@@ -36,15 +36,16 @@ else
 
 <script src="assets/js/script.js"></script>
 
-<main>
+<main id="c2">
     <div id="landings">
         <div class="landingChallenge">
             <h1>Challenge 2</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p>Thomas Anderson is the real name of which character in The Matrix?</p>
+                    <p>Morpheus likes to quote quotes, find the right one he would say right now</p>
                     <form action="api/challenge2">
                     <input type="text" name="input">
+                        <!-- Y2hlY2sgZm9yIEhhenoxNQ== | gK+GXSeG3Apd3KJbuoQx3KJ13mQx3lPr+dJs+8LWu=3c+=idu=eG3ApxqKJ1EKNxu=JSqKJ1+8w1XgNSudfb+Spx3dft+SpGqFPd34lsElPeqK+xEglMwdPP -->
                         <button>Submit</button>
                     </form>
                 </div>
@@ -60,6 +61,9 @@ else
                 }
                 ?>
             </div>
+            <form action="landing">
+                <button id="goBack">Go back</button>
+            </form>
         </div>
     </div>
 </main>

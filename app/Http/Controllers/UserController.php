@@ -140,7 +140,7 @@ class UserController extends Controller
 
         $user = User::where("name", $_SESSION["username"])->first();
 
-        if($request->input == "1999")
+        if($request->input == "M0rph3u5{R3m3mb3r,_411_1m_0ff3r1ng_1s_th3_truth._Noth1ng_m0r3.}")
         {
             $user->challenge1 = true;
             $user->save();
@@ -155,7 +155,7 @@ class UserController extends Controller
 
         $user = User::where("name", $_SESSION["username"])->first();
 
-        if($request->input == "neo" || $request->input == "Neo")
+        if($request->input == "N30{Y0u_3v3r_h4v3_th4t_f33l1ng_wh3r3_y0u_4r3_n0t_sur3_1f_y0u_4r3_4w4k3_0r_st1ll_dr34m1ng?}")
         {
             $user->challenge2 = true;
             $user->save();
@@ -185,7 +185,7 @@ class UserController extends Controller
 
         $user = User::where("name", $_SESSION["username"])->first();
 
-        if($request->input == "telephone" || $request->input == "telephones" || $request->input == "Telephone" || $request->input == "Telephones")
+        if($request->input == "select * from pills where color='red' OR 1=1")
         {
             $user->challenge4 = true;
             $user->save();
@@ -194,20 +194,41 @@ class UserController extends Controller
         $_SESSION["challenge"] = "failed";
         return redirect()->intended('challenge4');
     }
-    public function completedChallenge5(Request $request)
+    public function completedChallenge5()
     {
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
-        if($request->input == "Trinity" || $request->input == "trinity")
-        {
-            $user->challenge5 = true;
-            $user->save();
-            return redirect()->intended('landing');
-        }
-        $_SESSION["challenge"] = "failed";
-        return redirect()->intended('challenge5');
+        $user->challenge5 = true;
+        $user->save();
+        return redirect()->intended('landing');
+    }
+
+    public function hintChallenge5()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        return view("hintChallenge5", ["user" => $user]);
+    }
+
+    public function resetChallengesUser()
+    {
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        $user->challenge1 = false;
+        $user->challenge2 = false;
+        $user->challenge3 = false;
+        $user->challenge4 = false;
+        $user->challenge5 = false;
+
+        $user->save();
+
+        return redirect()->intended('landing');
     }
 
     function getUserCheckingAdmin()

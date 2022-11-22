@@ -3,12 +3,16 @@
 session_start();
 if(isset($_SESSION["loggedIn"]))
 {
+    /*
     if($_SESSION["loggedIn"])
     {
         header("Location: landing");
         exit();
     }
+    */
 }
+if(isset($_SESSION["username"])) $_SESSION["username"] = "";
+else $_SESSION["username"] = "";
 $_SESSION["loggedIn"] = false;
 ?>
 <html id="index" lang="en">

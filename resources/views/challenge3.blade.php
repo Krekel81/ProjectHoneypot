@@ -36,13 +36,13 @@ else
 
 <script src="assets/js/script.js"></script>
 
-<main>
+<main id="c3">
     <div id="landings">
         <div class="landingChallenge">
             <h1>Challenge 3</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p>Humanity is trapped inside a simulation known as the Matrix, but what century of our history does it simulate?</p>
+                    <p>Morpheus has lost his password to his computer. He might have hidden it with his favorite snack....</p>
                     <form action="api/challenge3">
                     <input type="text" name="input">
                         <button>Submit</button>
@@ -61,6 +61,9 @@ else
                 ?>
 
         </div>
+        <form action="landing">
+            <button id="goBack">Go back</button>
+        </form>
         </div>
     </div>
 </main>

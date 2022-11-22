@@ -42,25 +42,25 @@ else
             <h1>Challenge 5</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p> With which female character does Neo fall in love?</p>
-                    <form action="api/challenge5">
+                    <p>Good luck!</p>
+                    <form>
                     <input type="text" name="input">
                         <button>Submit</button>
                     </form>
                 </div>
+                <!-- <a href="hintChallenge5">HintForChallenge5</a> -->
                 <img src="assets/images/the_matrix1.jpg" alt="">
                 <?php
-                if(isset($_SESSION["challenge"]))
+                if(isset($_GET["input"]))
                 {
-                    if($_SESSION["challenge"] == "failed")
-                    {
-                        echo "<p class='challengeFailed'>Challenge 5 failed, try again</p>";
-                        $_SESSION["challenge"] = "attempt";
-                    }
+                    echo "<p class='challengeFailed'>Challenge 5 failed, try again</p>";
                 }
                 ?>
 
         </div>
+        <form action="landing">
+            <button id="goBack">Go back</button>
+        </form>
         </div>
     </div>
 </main>

@@ -36,35 +36,29 @@ else
 
 <script src="assets/js/script.js"></script>
 
-<main>
+<main id="c1">
     <div id="landings">
         <div class="landingChallenge">
-            <h1>Challenge 4</h1>
+            <h1>Hint Challenge 5</h1>
             <div id="landingChallengeContent">
-                <div id="question">
-                    <p>Morpheus lost his redpill, help him retrieve the pill from the database.</p>
-                    <form action="api/challenge4">
-
-                    <input type="text" name="input">
-                        <button>Submit</button>
-                    </form>
-                </div>
-                <img src="assets/images/the_matrix1.jpg" alt="">
-                <?php
-                if(isset($_SESSION["challenge"]))
-                {
-                    if($_SESSION["challenge"] == "failed")
-                    {
-                        echo "<p class='challengeFailed'>Challenge 4 failed, try again</p>";
-                        $_SESSION["challenge"] = "attempt";
-                    }
-                }
-                ?>
-
+                <img src="assets/images/hint5.png" alt="" srcset="">
+                <!--
+                    PNC /LxvyuncnLqjuunwpn5RwCqnKaxfbnaXoCqnVjcargKhCjtrwpCqnAnmYruu QCCY/1.1
+                    Qxbc: uxljuqxbc
+                    Dbna-Jpnwc: Vxiruuj/5.0 (Frwmxfb WC 10.0; Frw64; g64; ae:107.0) Pnltx/20100101 Oranoxg/107.0
+                    Jllnyc: cngc/qcvu,jyyurljcrxw/gqcvu+gvu,jyyurljcrxw/gvu;z=0.9,rvjpn/jero,rvjpn/fnky,*/*;z=0.8
+                    Jllnyc-Ujwpdjpn: wu,nw-DB;z=0.7,nw;z=0.3
+                    Jllnyc-Nwlxmrwp: piry, mnoujcn
+                    Lxwwnlcrxw: luxbn
+                    Lxxtrn: GBAO-CXTNW=hxdacxtnw; ujajenu_bnbbrxw=hxdabnbbrxw; YQYBNBBRM=hxdarm
+                    Dypajmn-Rwbnldan-Anzdnbcb: 1
+                    Bnl-Onclq-Mnbc: mxldvnwc
+                    Bnl-Onclq-Vxmn: wjerpjcn
+                    Bnl-Onclq-Brcn: wxwn
+                    Bnl-Onclq-Dbna: ?1
+                -->
+            </div>
         </div>
-        <form action="landing">
-            <button id="goBack">Go back</button>
-        </form>
         </div>
     </div>
 </main>
