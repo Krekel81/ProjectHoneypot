@@ -358,13 +358,6 @@ html#admin img
 html#admin #adminTableUsersDiv
 {
     height: 25rem;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-html#admin tbody
-{
-    height: 20rem;
-    display: block;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -445,17 +438,4 @@ html#admin input.disableButtonAdmin
 html#admin input.disableButtonAdmin.enableButtonAdmin
 {
     color:rgb(115, 234, 0);
-}
-.adminTableHeader
-{
-    display: block;
-    border-bottom: 2px solid rgb(114, 234, 0);
-    position: sticky;
-    width: 60rem;
-}
-html#admin tbody tr
-{
-    width: 65rem;
-    display: flex;
-    justify-content: space-between;
 }
