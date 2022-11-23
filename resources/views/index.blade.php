@@ -79,6 +79,8 @@ $_SESSION["loggedIn"] = false;
                         echo "<p style='color:green;'>You are logged in</p>";
                         $_SESSION["username"] = $username;
                         $_SESSION["loggedIn"] = true;
+                        $user->loggedIn = true;
+                        $user->save();
                         header("Location: landing");
                         exit();
                     }
@@ -87,11 +89,8 @@ $_SESSION["loggedIn"] = false;
                         exit();
                     }
                 }
-                else {
-                    $message = "<p style='color:red;'>This account does not exist</p>";
-                }
             }
-            echo $message;
+            echo "<p style='color:red;'>This account does not exist</p>";
         }
 
     ?>

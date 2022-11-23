@@ -28,6 +28,7 @@ else
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
     <script src="assets/js/redirect.js"></script>
+    <script src="assets/js/checkIfLoggedOut.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -92,6 +93,8 @@ else
                             echo "<p>Logout</p>";
                             $_SESSION["loggedIn"] = false;
                             $_SESSION["username"] = "";
+                            $user->loggedIn = false;
+                            $user->save();
                             header("Location: /");
                             exit();
                         }

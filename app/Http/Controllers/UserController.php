@@ -61,7 +61,7 @@ class UserController extends Controller
 
                 $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
-
+                $user->loggedIn = true;
                 $user -> save();
 
                 $this->createFolder($user["name"]);

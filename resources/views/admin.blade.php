@@ -44,6 +44,7 @@ else
             <div id="adminContent">
                 <div id="adminTableUsersDiv">
                     <table id="adminTableUsers">
+                        <thead class="adminTableHeader">
                         <tr>
                             <th>Username</th>
                             <th>Challenge1</th>
@@ -51,8 +52,12 @@ else
                             <th>Challenge3</th>
                             <th>Challenge4</th>
                             <th>Challenge5</th>
+                            <th>LoggedIn</th>
                             <th>Status</th>
                         </tr>
+                        </thead>
+                        <tbody>
+
                         <form method="" name="disabled">
                         @foreach ($users as $user)
 
@@ -63,11 +68,18 @@ else
                             <td><?php echo $user->challenge3 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
                             <td><?php echo $user->challenge4 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
                             <td><?php echo $user->challenge5 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
+                            <td><?php echo $user->loggedIn ? "<p>Yes</p>" : "<p style='color:red;'>No</p>"; ?></td>
                             <td><?php echo $user->disabled ? "<p style='color:red;'>Disabled</p>" : "<p>Active</p>"; ?></td>
-                            <td><input type="submit" name="{{ $user->name }}" value="<?php echo $user->disabled ? "Enable" : "Disable"; ?>" class="<?php echo $user->disabled ? "enableButtonAdmin" : "disableButtonAdmin"; ?>" name="disable" /></td>
+                            @if(!($user->admin)) <td><input type="submit" name="{{ $user->name }}" value="<?php echo $user->disabled ? "Enable" : "Disable"; ?>" class="<?php echo $user->disabled ? "enableButtonAdmin" : "disableButtonAdmin"; ?>" name="disable" /></td>
+                            @else
+                            <td></td>
+                            @endif
                         </tr>
+
                         @endforeach
-                    </form>
+                        </form>
+
+                        </tbody>
                         <?php
                         foreach($_GET as $key=>$value)
                         {
@@ -78,8 +90,13 @@ else
 
                         ?>
                     </div>
+
                     </table>
+
             </div>
+            <form action="landing">
+                <button id="go">Go back</button>
+            </form>
         </div>
     </div>
 </main>

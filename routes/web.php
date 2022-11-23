@@ -29,7 +29,6 @@ Route::get('/register', [UserController::class, 'allUsersCheckingRegister']);
 Route::get('/landing', [UserController::class, 'getUserCheckingLanding']);
 Route::post('/landing', [ImageController::class, 'uploadImage']);
 
-//Route::get('/admin', [ViewController::class, 'showAdmin']);
 Route::get('/admin', [UserController::class, 'GetUserCheckingAdmin']);
 
 Route::get('/challenge1', [UserController::class, 'getUserChallenge1']);
