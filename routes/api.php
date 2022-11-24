@@ -20,6 +20,7 @@ use App\Models\User;
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::post('/user', [UserController::class, 'createNewUser']);
 Route::delete('/user', [UserController::class, "deleteAllUsers"]);
+Route::get('/users/logOff', [UserController::class, 'logOffUsers']);
 
 Route::get('/challenge1', [UserController::class, 'completedChallenge1']);
 Route::get('/challenge2', [UserController::class, 'completedChallenge2']);

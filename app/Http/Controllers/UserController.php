@@ -244,6 +244,18 @@ class UserController extends Controller
 
     }
 
+    function logOffUsers()
+    {
+        session_start();
+        $user = User::where("name", $_SESSION["username"])->first();
+
+        $user->loggedIn = false;
+        $_SESSION["loggedIn"] = false;
+
+        $user->save();
+        return redirect()->intended('/');
+    }
+
     function getUserCheckingAdmin()
     {
         session_start();
