@@ -50,7 +50,7 @@ $_SESSION["loggedIn"] = false;
                 <label for="name">NAME</label>
                 <input type="name" maxlength="10" name="name" id="name" required>
                 <label for="password">PASSWORD</label>
-                <input type="password" name="password" id="password" minlength="3" required>
+                <input type="password" name="password" id="password" minlength="3" maxlength="15" required>
             </div>
             <button name="REGISTER" id="REGISTER">REGISTER</button>
             <span><a href="/">Already have an account? Login here</a></span>

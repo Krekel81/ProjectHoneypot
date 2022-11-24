@@ -45,8 +45,8 @@ class UserController extends Controller
     function buildRulesUsers()
     {
 
-        return ["name" =>  "required|string|min:1|max:50|unique:users",
-                "password" =>  "required|string|min:1"];
+        return ["name" =>  "required|string|min:1|max:10|unique:users",
+                "password" =>  "required|string|min:3|max:15"];
     }
     function checkIfInputIsValidUser($user, $validator)
     {
