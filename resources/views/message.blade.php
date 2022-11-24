@@ -33,7 +33,7 @@ else
 </head>
 <body>
 <main id="message">
-    <h1>File is too big to upload...</h1>
+    <h1>{{ $message }}</h1>
     <form action="/landing">
     <button type="submit">Go back</button>
     </form>

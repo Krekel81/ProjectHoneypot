@@ -18,7 +18,7 @@ class ImageController extends Controller
         {
             try
             {
-                if((filesize($request->file('avatar'))/1024) > 2000) return view('fileTooBig');
+                if((filesize($request->file('avatar'))/1024) > 2000) return view('message', array('message'=>"File is too big."));
                 $user = User::where("name", $_SESSION["username"])->first();
 
                 $avatar = $request->file('avatar');
@@ -35,6 +35,7 @@ class ImageController extends Controller
                 return view('landing', array('user' => $user));
             }
             catch (Exception $e) {
+                return view('message', array('message'=>"You did not upload a valid image/avatar."));
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
         }
