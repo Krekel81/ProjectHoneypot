@@ -41,6 +41,7 @@ Route::get('/hintChallenge5', [UserController::class, 'hintChallenge5']);
 Route::get('/CompleteChallenge5InTheBrowserOfTheMatrixByTakingTheRedPill', [UserController::class, 'completedChallenge5']);
 Route::get('/rc', [UserController::class, 'resetChallengesUser']);
 
+
 Route::get('/hello', [ViewController::class, 'helloworld']);
 Route::get('/test/test.php', [ViewController::class, 'showTest']);
 Route::get('/test/test2.php', [ViewController::class, 'showTest2']);

@@ -59,7 +59,6 @@ $_SESSION["loggedIn"] = false;
         </fieldset>
     </form>
 
-
     <?php
 
         if(isset($_GET["name"]) && isset($_GET["password"]))

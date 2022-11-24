@@ -211,7 +211,7 @@ class UserController extends Controller
 
         $user = User::where("name", $_SESSION["username"])->first();
 
-        return view("hintChallenge5", ["user" => $user]);
+        return view("hintchallenge5", ["user" => $user]);
     }
 
     public function resetChallengesUser()
@@ -260,7 +260,7 @@ class UserController extends Controller
                 }
                 else
                 {
-                    return view("Unauthorized", ["user" => $user]);
+                    return view("notAuthorized", ["user" => $user]);
                 }
             }
             else
