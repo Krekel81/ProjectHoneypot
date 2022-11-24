@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 if(isset($_SESSION['loggedIn']))
 {
     if(!($_SESSION["loggedIn"]))
@@ -29,18 +29,22 @@ else
     <script src="assets/js/run.js"></script>
     <script src="assets/js/uploadedfile.js"></script>
 </head>
-<body>
+<body style="display: grid;
+place-items: center">
 <!-- partial:index.partial.html -->
 <canvas id="canv" width="500" height="200"></canvas>
 <!-- partial -->
 
 <script src="assets/js/script.js"></script>
 
-<main>
-    <div id="landings">
-        <h1>401 Unauthorized</h1>
-        <p>You are unauthorized to see this page!</p>
+<main style="margin-bottom: 10rem; margin-top:0rem;">
+    <div style="width: 100%;">
+        <h1 style="font-size: 3rem;">401 Unauthorized</h1>
+        <p >You are unauthorized to see this page!</p>
     </div>
+    <form action="landing">
+        <button id="goBack">Go back</button>
+    </form>
 </main>
 </body>
 </html>

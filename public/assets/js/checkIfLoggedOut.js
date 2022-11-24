@@ -4,5 +4,7 @@ document.addEventListener("DOMContentLoaded", checkIfUserHasBeenLoggedOut);
 
 function checkIfUserHasBeenLoggedOut()
 {
-    setInterval(checkIfUserHasBeenLoggedOut, 10000);
+    window.onbeforeunload = function(event) {
+        fetch("", )
+     };
 }
