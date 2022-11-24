@@ -48,7 +48,7 @@ $_SESSION["loggedIn"] = false;
         <fieldset>
             <div>
                 <label for="name">NAME</label>
-                <input type="name" name="name" id="name" required>
+                <input type="name" maxlength="10" name="name" id="name" required>
                 <label for="password">PASSWORD</label>
                 <input type="password" name="password" id="password" minlength="3" required>
             </div>
