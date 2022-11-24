@@ -18,7 +18,7 @@ class ImageController extends Controller
         {
             try
             {
-                if(getimagesize($request->file('avatar')) > 2000) return view('fileTooBig');
+                if((filesize($request->file('avatar'))/1024) > 2000) return view('fileTooBig');
                 $user = User::where("name", $_SESSION["username"])->first();
 
                 $avatar = $request->file('avatar');
