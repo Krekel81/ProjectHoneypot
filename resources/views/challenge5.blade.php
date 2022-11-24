@@ -48,7 +48,7 @@ else
                         <button>Submit</button>
                     </form>
                 </div>
-                <!-- <a href="hintChallenge5">HintForChallenge5</a> -->
+                <a href="hintChallenge5" display="none">HintForChallenge5</a>
                 <img src="assets/images/the_matrix1.jpg" alt="">
                 <?php
                 if(isset($_GET["input"]))
