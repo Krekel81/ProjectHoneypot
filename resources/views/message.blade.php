@@ -29,7 +29,7 @@ else
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
-
+    <script src="assets/js/checkIfLoggedOut.js"></script>
 </head>
 <body>
 <main id="message">

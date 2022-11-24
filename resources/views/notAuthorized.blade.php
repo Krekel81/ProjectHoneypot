@@ -27,7 +27,7 @@ else
     <link href="https://fonts.cdnfonts.com/css/matrix" rel="stylesheet">
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
-    <script src="assets/js/uploadedfile.js"></script>
+    <script src="assets/js/checkIfLoggedOut.js"></script>
 </head>
 <body style="display: grid;
 place-items: center">
