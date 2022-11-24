@@ -28,6 +28,7 @@ else
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
     <script src="assets/js/checkIfLoggedOut.js"></script>
+    <script src="assets/js/redirect.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
