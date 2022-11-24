@@ -18,7 +18,7 @@ else
 <html id="notAuthorized" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Honeypot - Group 3</title>
+    <title>Honeypot - Group 23</title>
     <!-- Our Css -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/screen.css">

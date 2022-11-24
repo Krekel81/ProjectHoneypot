@@ -18,7 +18,7 @@ $_SESSION["loggedIn"] = false;
 <html id="index" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Honeypot - Group 3</title>
+    <title>Honeypot - Group 23</title>
     <!-- Our Css -->
 
     <link rel="stylesheet" href="assets/css/reset.css">
@@ -94,9 +94,6 @@ $_SESSION["loggedIn"] = false;
 
     ?>
 </main>
-<footer>
-    <p> &copy; Made by Tibo Krekelbergh, Luca Desmet and Jens Delorge</p>
-</footer>
 </body>
 <!-- https://www.ultimatequizquestions.com/matrix-quiz/ -->
 </html>
