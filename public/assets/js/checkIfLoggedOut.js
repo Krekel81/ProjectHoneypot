@@ -4,5 +4,5 @@ document.addEventListener("DOMContentLoaded", checkIfUserHasBeenLoggedOut);
 
 function checkIfUserHasBeenLoggedOut()
 {
-    console.log("In Development");
+    //console.log("In Development");
 }
