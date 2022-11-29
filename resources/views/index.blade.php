@@ -80,7 +80,7 @@ $_SESSION["loggedIn"] = false;
                         $_SESSION["loggedIn"] = true;
                         $user->loggedIn = true;
                         $user->save();
-                        header("Location: landing");
+                        header("Location: profile");
                         exit();
                     }
                     else {
@@ -95,5 +95,4 @@ $_SESSION["loggedIn"] = false;
     ?>
 </main>
 </body>
-<!-- https://www.ultimatequizquestions.com/matrix-quiz/ -->
 </html>

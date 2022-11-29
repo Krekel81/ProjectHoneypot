@@ -32,6 +32,11 @@ else
     <script src="assets/js/checkIfLoggedOut.js"></script>
 </head>
 <body>
+<!-- partial:index.partial.html -->
+<canvas id="canv" width="500" height="200"></canvas>
+<!-- partial -->
+<script src="assets/js/script.js"></script>
+
 <main id="message">
     <h1>{{ $message }}</h1>
     <form action="/landing">

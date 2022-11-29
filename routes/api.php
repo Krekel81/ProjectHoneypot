@@ -17,7 +17,6 @@ use App\Models\User;
 */
 
 //users
-Route::get('/user', [UserController::class, 'getUsers']);
 Route::post('/user', [UserController::class, 'createNewUser']);
 Route::delete('/user', [UserController::class, "deleteAllUsers"]);
 Route::get('/users/logOff', [UserController::class, 'logOffUsers']);

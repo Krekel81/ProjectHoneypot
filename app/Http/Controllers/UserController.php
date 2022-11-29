@@ -17,11 +17,6 @@ class UserController extends Controller
     public function __construct(User $model){
         $this->model = $model;
     }
-    function getUsers()
-    {
-        Log::info("Retrieving users");
-        return ["users" => User::all()];
-    }
     function createNewUser(Request $request)
     {
         Log::info("Creating user");
@@ -66,7 +61,7 @@ class UserController extends Controller
 
                 $this->createFolder($user["name"]);
 
-                header("Location: ../landing");
+                header("Location: ../profile");
                 exit();
                 return $user;
             }
@@ -84,7 +79,7 @@ class UserController extends Controller
     {
         Log::info("Getting user with name");
 
-        $users = $this->getUsers();
+        $users = User::all();
 
         foreach ($users as $user) {
             if($user->name == $userName)
@@ -114,8 +109,16 @@ class UserController extends Controller
         session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
-
+        
         return view("landing", ["user" => $user]);
+    }
+    public function getUserCheckingProfile(){
+        session_start();
+
+        $user = User::where("name", $_SESSION["username"])->first();
+        setcookie("ICanOnlyShowYouTheDoor", "dHJ5IGFnYWluIFlXNWtJR0ZuWVdsdWJtNXViaUJrU0VvMVNVYzVkVnBUUW5OWlYwWjZaRWhTTUVsSVVuQmlWMVpzV2xOQ1dsWXlVbTlYVm1SelpGZEtkRTVZVm1saFZVcHpWbTV3Y21WR1RsWmFSM1JyWWxaS1JWVlhOVU5oTVVwSVQxYzFXazFxUVRGWlZtUktaV3hXZFdORk1XbGlSV3QzVjJ0V1JrOVdRbEpRVkRBOQ==", time()+3600);
+
+        return view("profile", ["user" => $user]);
     }
 
     public function getUserChecking($name){
@@ -267,12 +270,12 @@ class UserController extends Controller
 
                 if($user->admin)
                 {
-                    $users = $this->getUsers();
+                    $users = User::all();
                     return view("admin", $users);
                 }
                 else
                 {
-                    return view("notAuthorized", ["user" => $user]);
+                    return view("message", ["message" => "404 Not Authorized"]);
                 }
             }
             else
