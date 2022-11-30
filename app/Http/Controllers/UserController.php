@@ -45,7 +45,7 @@ class UserController extends Controller
     }
     function checkIfInputIsValidUser($user, $validator)
     {
-        session_start();
+        
         if(!($validator-> fails()))
             {
                 $data = $validator->validate();
@@ -106,14 +106,14 @@ class UserController extends Controller
     }
 
     public function getUserCheckingLanding(){
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
         
         return view("landing", ["user" => $user]);
     }
     public function getUserCheckingProfile(){
-        session_start();
+        
 
         if(isset($_SESSION["username"]))
         {
@@ -145,7 +145,7 @@ class UserController extends Controller
 
     public function completedChallenge1(Request $request)
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -160,7 +160,7 @@ class UserController extends Controller
     }
     public function completedChallenge2(Request $request)
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -175,7 +175,7 @@ class UserController extends Controller
     }
     public function completedChallenge3(Request $request)
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -190,7 +190,7 @@ class UserController extends Controller
     }
     public function completedChallenge4(Request $request)
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -205,7 +205,7 @@ class UserController extends Controller
     }
     public function completedChallenge5()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -216,7 +216,7 @@ class UserController extends Controller
 
     public function hintChallenge5()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -225,7 +225,7 @@ class UserController extends Controller
 
     public function resetChallengesUser()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -242,7 +242,7 @@ class UserController extends Controller
 
     function toggleDisableUser($user)
     {
-        session_start();
+        
 
         $user = User::where("name", $user)->first();
 
@@ -255,7 +255,7 @@ class UserController extends Controller
 
     function logOffUsers()
     {
-        session_start();
+        
         $user = User::where("name", $_SESSION["username"])->first();
 
         $user->loggedIn = false;
@@ -267,7 +267,7 @@ class UserController extends Controller
 
     function getUserCheckingAdmin()
     {
-        session_start();
+        
         if(isset($_SESSION["username"]))
         {
             if($_SESSION["username"] != "")
@@ -298,7 +298,7 @@ class UserController extends Controller
 
     function getUserChallenge1()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -306,7 +306,7 @@ class UserController extends Controller
     }
     function getUserChallenge2()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -314,7 +314,7 @@ class UserController extends Controller
     }
     function getUserChallenge3()
     {
-        session_start();
+        
 
         setcookie("Flag", "Th3M4tr1x-MyN4m315Morph3u5", time()+3600);
 
@@ -324,7 +324,7 @@ class UserController extends Controller
     }
     function getUserChallenge4()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -332,7 +332,7 @@ class UserController extends Controller
     }
     function getUserChallenge5()
     {
-        session_start();
+        
 
         $user = User::where("name", $_SESSION["username"])->first();
 
