@@ -17,6 +17,7 @@ class UserController extends Controller
     public function __construct(User $model){
         $this->model = $model;
     }
+
     function createNewUser(Request $request)
     {
         Log::info("Creating user");
@@ -29,13 +30,6 @@ class UserController extends Controller
 
         //Save & return
         return $this->checkIfInputIsValidUser($user, $validator);
-    }
-    function deleteAllUsers()
-    {
-        Log::info("Deleting all users");
-        User::truncate();
-        File::cleanDirectory(public_path('/uploads/avatars/'));
-        return "All users were successfully deleted, new user object = ".User::all();
     }
     function buildRulesUsers()
     {
@@ -72,101 +66,6 @@ class UserController extends Controller
             Log::warning("Validation input error");
             return redirect()->route('register', ["message"=>"User is already registered!"])->with(["message"=>"User is already registered!"]);
     }
-    function getUser($userName)
-    {
-        Log::info("Getting user with name");
-
-        $users = User::all();
-
-        foreach ($users as $user) {
-            if($user->name == $userName)
-            {
-                return $user->name;
-            }
-        }
-        Log::info("Did not find a user with the name $userName");
-        return null;
-    }
-
-    public function allUsersCheckingIndex(){
-        if(isset($_SESSION["username"]))
-        {
-            $user = User::where("name", $_SESSION["username"])->first();
-            if($user && $user->loggedIn && !($user->disabled))
-            {
-                return redirect()->intended('profile');
-            }
-        }
-        $_SESSION["username"] = "";
-
-        $data = $this->model->all();
-
-        return view("index", ["users" => $data]);
-    }
-
-    public function allUsersCheckingRegister(){
-
-        if(isset($_SESSION["username"]))
-        {
-            $user = User::where("name", $_SESSION["username"])->first();
-            if($user && $user->loggedIn && !($user->disabled))
-            {
-                return redirect()->intended('profile');
-            }
-            
-        }
-        $_SESSION["username"] = "";
-
-        $data = $this->model->all();
-
-        return view("register", ["users" => $data]);
-    }
-
-    public function getUserCheckingLanding(){
-
-        if(isset($_SESSION["username"]))
-        {
-            $user = User::where("name", $_SESSION["username"])->first();
-            if($user)
-            {
-                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
-                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
-
-                return view("landing", ["user" => $user]);
-            }
-            else
-            {
-                return redirect()->route('/', ["message"=>"You are not logged in!"]);
-            }
-        }
-
-        return redirect()->route('/', ["message"=>"You are not logged in!"]);
-        
-    }
-    public function getUserCheckingProfile(){
-        if(isset($_SESSION["username"]))
-        {
-            $user = User::where("name", $_SESSION["username"])->first();
-            if($user)
-            {
-                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
-                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
-                setcookie("ICanOnlyShowYouTheDoor", "dHJ5IGFnYWluIFlXNWtJR0ZuWVdsdWJtNXViaUJrU0VvMVNVYzVkVnBUUW5OWlYwWjZaRWhTTUVsSVVuQmlWMVpzV2xOQ1dsWXlVbTlYVm1SelpGZEtkRTVZVm1saFZVcHpWbTV3Y21WR1RsWmFSM1JyWWxaS1JWVlhOVU5oTVVwSVQxYzFXazFxUVRGWlZtUktaV3hXZFdORk1XbGlSV3QzVjJ0V1JrOVdRbEpRVkRBOQ==", time()+3600);
-                return view("profile", ["user" => $user]);
-            }
-            else
-            {
-                return redirect()->route('/', ["message"=>"You are not logged in!"]);
-            }
-        }
-        return redirect()->route('/', ["message"=>"You are not logged in!"]);
-    }
-
-    public function getUserChecking($name){
-        $data = $this->model->where('name', $name)->first();
-        Log::info($data);
-        return view("checking", ["user" => $data]);
-    }
 
     public function createFolder($name){
         $path = public_path()."/uploads/avatars/$name/";
@@ -178,81 +77,107 @@ class UserController extends Controller
         return Log::info("Successfully created folder");
     }
 
-    
-
+    function deleteAllUsers()
+    {
+        Log::info("Deleting all users");
+        User::truncate();
+        File::cleanDirectory(public_path('/uploads/avatars/'));
+        return "All users were successfully deleted, new user object = ".User::all();
+    }
 
     public function resetChallengesUser()
     {
-        if(isset($_SESSION["username"]))
+        if(!$this->isNotAuthorized())
         {
             $user = User::where("name", $_SESSION["username"])->first();
-            if($user)
-            {
-                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
-                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
-                
-                $user->challenge1 = false;
-                $user->challenge2 = false;
-                $user->challenge3 = false;
-                $user->challenge4 = false;
-                $user->challenge5 = false;
-        
-                $user->save();
-        
-                return redirect()->intended('landing');
-            }
-            else
-            {
-                return redirect()->route('/', ["message"=>"You are not logged in!"]);
-            }
+            $user->challenge1 = false;
+            $user->challenge2 = false;
+            $user->challenge3 = false;
+            $user->challenge4 = false;
+            $user->challenge5 = false;
+    
+            $user->save();
+    
+            return redirect()->intended('landing');
         }
-        return redirect()->route('/', ["message"=>"You are not logged in!"]);
-
-       
+        else return $this->isNotAuthorized();
     }
 
     function toggleDisableUser($user)
     {
-        
-        session_start();
-        $user = User::where("name", $user)->first();
-
-        $user->disabled =! $user->disabled;
-        $user->save();
-
-        return redirect()->intended('admin');
-
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            $user->disabled =! $user->disabled;
+            $user->save();
+            return redirect()->intended('admin');
+        }
+        else return $this->isNotAuthorized();
     }
 
-    function getUserCheckingAdmin()
-    {
-        
-        if(isset($_SESSION["username"]))
+    public function allUsersCheckingIndex(){
+        if(!$this->isNotAuthorized())
         {
-            if($_SESSION["username"] != "")
-            {
-                $user = User::where("name", $_SESSION["username"])->first();
-
-                if($user->admin)
-                {
-                    $users = User::all();
-                    return view("admin", $users);
-                }
-                else
-                {
-                    return view("message", ["message" => "404 Not Authorized"]);
-                }
-            }
-            else
-            {
-                return redirect()->intended('/');
-            }
+            $user = User::where("name", $_SESSION["username"])->first();
+            return redirect()->intended('profile');
         }
         else
         {
-            return redirect()->intended('/');
+            $_SESSION["username"] = "";
+            $data = $this->model->all();
+            return view("index", ["users" => $data]);
         }
+    }
 
+    public function allUsersCheckingRegister(){
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return redirect()->intended('profile');
+        }
+        else
+        {
+            $_SESSION["username"] = "";
+            $data = $this->model->all();
+            return view("register", ["users" => $data]);
+        }
+    }
+
+    public function getUserCheckingLanding(){
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return view("landing", ["user" => $user]);
+        }
+        else return $this->isNotAuthorized();
+    }
+    public function getUserCheckingProfile(){
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            setcookie("ICanOnlyShowYouTheDoor", "dHJ5IGFnYWluIFlXNWtJR0ZuWVdsdWJtNXViaUJrU0VvMVNVYzVkVnBUUW5OWlYwWjZaRWhTTUVsSVVuQmlWMVpzV2xOQ1dsWXlVbTlYVm1SelpGZEtkRTVZVm1saFZVcHpWbTV3Y21WR1RsWmFSM1JyWWxaS1JWVlhOVU5oTVVwSVQxYzFXazFxUVRGWlZtUktaV3hXZFdORk1XbGlSV3QzVjJ0V1JrOVdRbEpRVkRBOQ==", time()+3600);
+            return view("profile", ["user" => $user]);
+        }
+        else return $this->isNotAuthorized();
+    }
+
+
+    function getUserCheckingAdmin()
+    {
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user->admin)
+            {
+                $users = User::all();
+                return view("admin", $users);
+            }
+            else
+            {
+                return view("message", ["message" => "404 Not Authorized"]);
+            }
+        }
+        else return $this->isNotAuthorized();
     }
 
     

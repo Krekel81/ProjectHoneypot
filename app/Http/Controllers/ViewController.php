@@ -14,10 +14,7 @@ class ViewController extends Controller
             $user = User::where("name", $_SESSION["username"])->first();
             return view("challenge1", ["user" => $user]);
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     
     function getUserChallenge2()
@@ -27,10 +24,7 @@ class ViewController extends Controller
             $user = User::where("name", $_SESSION["username"])->first();
             return view("challenge2", ["user" => $user]);
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     function getUserChallenge3()
     {
@@ -40,10 +34,7 @@ class ViewController extends Controller
             setcookie("Flag", "Th3M4tr1x-MyN4m315Morph3u5", time()+3600);
             return view("challenge3", ["user" => $user]);
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     function getUserChallenge4()
     {
@@ -52,10 +43,7 @@ class ViewController extends Controller
             $user = User::where("name", $_SESSION["username"])->first();
             return view("challenge4", ["user" => $user]);
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     function getUserChallenge5()
     {
@@ -64,10 +52,7 @@ class ViewController extends Controller
             $user = User::where("name", $_SESSION["username"])->first();
             return view("challenge5", ["user" => $user]);
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     public function hintChallenge5()
     {
@@ -76,10 +61,7 @@ class ViewController extends Controller
             $user = User::where("name", $_SESSION["username"])->first();
             return view("hintchallenge5", ["user" => $user]);
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     function isNotAuthorized()
     {

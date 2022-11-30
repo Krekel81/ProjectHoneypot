@@ -22,10 +22,7 @@ class ChallengeCheckingController extends Controller
             $_SESSION["challenge"] = "failed";
             return redirect()->intended('challenge1');    
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     public function completedChallenge2(Request $request)
     {
@@ -42,10 +39,7 @@ class ChallengeCheckingController extends Controller
             $_SESSION["challenge"] = "failed";
             return redirect()->intended('challenge2');
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     public function completedChallenge3(Request $request)
     {
@@ -62,10 +56,7 @@ class ChallengeCheckingController extends Controller
             $_SESSION["challenge"] = "failed";
             return redirect()->intended('challenge3');
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     public function completedChallenge4(Request $request)
     {
@@ -82,10 +73,7 @@ class ChallengeCheckingController extends Controller
             $_SESSION["challenge"] = "failed";
             return redirect()->intended('challenge4');
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
+        else return $this->isNotAuthorized();
     }
     public function completedChallenge5()
     {
@@ -97,14 +85,7 @@ class ChallengeCheckingController extends Controller
             $user->save();
             return redirect()->intended('landing');
         }
-        else
-        {
-            return $this->isNotAuthorized();
-        }
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        
+        else return $this->isNotAuthorized();
     }
     function isNotAuthorized()
     {
