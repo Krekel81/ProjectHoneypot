@@ -145,7 +145,7 @@ class UserController extends Controller
 
     public function completedChallenge1(Request $request)
     {
-        
+        session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -161,7 +161,7 @@ class UserController extends Controller
     public function completedChallenge2(Request $request)
     {
         
-
+        session_start();
         $user = User::where("name", $_SESSION["username"])->first();
 
         if($request->input == "N30{Y0u_3v3r_h4v3_th4t_f33l1ng_wh3r3_y0u_4r3_n0t_sur3_1f_y0u_4r3_4w4k3_0r_st1ll_dr34m1ng?}")
@@ -175,7 +175,7 @@ class UserController extends Controller
     }
     public function completedChallenge3(Request $request)
     {
-        
+        session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -190,7 +190,7 @@ class UserController extends Controller
     }
     public function completedChallenge4(Request $request)
     {
-        
+        session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -205,7 +205,7 @@ class UserController extends Controller
     }
     public function completedChallenge5()
     {
-        
+        session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -216,7 +216,7 @@ class UserController extends Controller
 
     public function hintChallenge5()
     {
-        
+        session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -225,7 +225,7 @@ class UserController extends Controller
 
     public function resetChallengesUser()
     {
-        
+        session_start();
 
         $user = User::where("name", $_SESSION["username"])->first();
 
@@ -243,7 +243,7 @@ class UserController extends Controller
     function toggleDisableUser($user)
     {
         
-
+        session_start();
         $user = User::where("name", $user)->first();
 
         $user->disabled =! $user->disabled;
@@ -251,18 +251,6 @@ class UserController extends Controller
 
         return redirect()->intended('admin');
 
-    }
-
-    function logOffUsers()
-    {
-        
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        $user->loggedIn = false;
-        $_SESSION["loggedIn"] = false;
-
-        $user->save();
-        return redirect()->intended('/');
     }
 
     function getUserCheckingAdmin()

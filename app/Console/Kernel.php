@@ -22,11 +22,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->call(function () {
-            Log::info("These users have been updated: ".DB::table('users')->where('last_active_at', '<=', Carbon::now()->subMinutes(15))->get());
-            DB::table('users')->where('last_active_at', '<=', Carbon::now()->subMinutes(15))->update(['loggedIn' => 0]);
+            Log::info("These users have been updated: ".DB::table('users')->select('name')->where('last_active_at', '<=', Carbon::now()->subMinutes(15))->where('loggedIn' , '=', 1)->get());
+            DB::table('users')->where('last_active_at', '<=', Carbon::now()->subMinutes(15))->where('loggedIn' , '=', 1)->update(['loggedIn' => 0]);
         })->everyMinute();
         
-        $schedule->command('test')->everyMinute();
+        //$schedule->command('user:cron')->everyMinute();
     }
 
     /**
