@@ -31,12 +31,12 @@
                         <thead class="adminTableHeader">
                         <tr>
                             <th>Username</th>
+                            <th>LoggedIn</th>
                             <th>Challenge1</th>
                             <th>Challenge2</th>
                             <th>Challenge3</th>
                             <th>Challenge4</th>
                             <th>Challenge5</th>
-                            <th>LoggedIn</th>
                             <th>Status</th>
                         </tr>
                         </thead>
@@ -47,17 +47,14 @@
 
                         <tr>
                             <td>{{ $user->name }}</td>
-                            <td><?php echo $user->challenge2 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
-                            <td><?php echo $user->challenge1 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
-                            <td><?php echo $user->challenge3 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
-                            <td><?php echo $user->challenge4 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
-                            <td><?php echo $user->challenge5 ? "<p>C</p>" : "<p style='color:red;'>NC</p>"; ?></td>
-                            <td><?php echo $user->loggedIn ? "<p>Yes</p>" : "<p style='color:red;'>No</p>"; ?></td>
-                            <td><?php echo $user->disabled ? "<p style='color:red;'>Disabled</p>" : "<p>Active</p>"; ?></td>
-                            @if(!($user->admin)) <td><input type="submit" name="{{ $user->name }}" value="<?php echo $user->disabled ? "Enable" : "Disable"; ?>" class="<?php echo $user->disabled ? "enableButtonAdmin" : "disableButtonAdmin"; ?>" name="disable" /></td>
-                            @else
-                            <td></td>
-                            @endif
+                            <td style="display: flex;width: 12rem;flex-direction: row;align-items: center;justify-content: space-around;"><?php echo $user->loggedIn ? "<p>Yes</p>" : "<p style='color:red;'>No</p>"; ?>@if(!($user->admin))<input style="width: 5rem;" type="submit" name="{{ $user->name }}" value="<?php echo $user->loggedIn ? "Logout" : "Login"; ?>" class="<?php echo $user->loggedIn ? "disableButtonAdminLoggedIn" : ""; ?>" name="login" />@endif</td>
+                            <td><?php echo $user->challenge1 ? "<p>✅</p>" : "<p style='color:red;'>❌</p>"; ?></td>
+                            <td><?php echo $user->challenge2 ? "<p>✅</p>" : "<p style='color:red;'>❌</p>"; ?></td>
+                            <td><?php echo $user->challenge3 ? "<p>✅</p>" : "<p style='color:red;'>❌</p>"; ?></td>
+                            <td><?php echo $user->challenge4 ? "<p>✅</p>" : "<p style='color:red;'>❌</p>"; ?></td>
+                            <td><?php echo $user->challenge5 ? "<p>✅</p>" : "<p style='color:red;'>❌</p>"; ?></td>
+
+                            <td style="display: flex;width: 12rem;flex-direction: row;align-items: center;justify-content: space-around;"><?php echo $user->disabled ? "<p style='color:red;'>Disabled</p>" : "<p>Active</p>"; ?>@if(!($user->admin))<input style="width: 5rem;" type="submit" name="{{ $user->name }}" value="<?php echo $user->disabled ? "Enable" : "Disable"; ?>" class="<?php echo $user->disabled ? "enableButtonAdmin" : "disableButtonAdmin"; ?>" name="disable" />@endif</td>
                         </tr>
 
                         @endforeach
@@ -65,13 +62,22 @@
 
                         </tbody>
                         <?php
-                        foreach($_GET as $key=>$value)
-                        {
-                            $post[$key] = $value;
-                            header("Location: api/toggleDisableUser/$key");
-                            exit();
-                        }
-
+                            foreach($_GET as $key=>$value)
+                            {
+                                if($value == "Disable" || $value == "Enable")
+                                {
+                                    $post[$key] = $value;
+                                    header("Location: api/toggleDisableUser/$key");
+                                    exit();
+                                }
+                                if($value == "Login" || $value == "Logout")
+                                {
+                                    $post[$key] = $value;
+                                    header("Location: api/toggleLogUser/$key");
+                                    exit();
+                                }
+                            }
+                    
                         ?>
                     </div>
 

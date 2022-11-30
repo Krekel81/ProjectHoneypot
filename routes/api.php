@@ -28,3 +28,4 @@ Route::get('/challenge4', [ChallengeCheckingController::class, 'completedChallen
 Route::get('/challenge5', [ChallengeCheckingController::class, 'completedChallenge5']);
 
 Route::get('/toggleDisableUser/{user}', [UserController::class, 'toggleDisableUser']);
+Route::get('/toggleLogUser/{user}', [UserController::class, 'toggleLogUser']);

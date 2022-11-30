@@ -99,12 +99,27 @@ class UserController extends Controller
 
     function toggleDisableUser($user)
     {
+        session_start();
         if(!$this->isNotAuthorized())
         {
-            session_start();
             $user = User::where("name", $user)->first();
 
             $user->disabled =! $user->disabled;
+            $user->save();
+
+            return redirect()->intended('admin');
+        }
+        else return $this->isNotAuthorized();
+    }
+
+    function toggleLogUser($user)
+    {
+        session_start();
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $user)->first();
+
+            $user->loggedIn =! $user->loggedIn;
             $user->save();
 
             return redirect()->intended('admin');

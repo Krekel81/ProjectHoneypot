@@ -435,6 +435,10 @@ html#admin input.disableButtonAdmin
 {
     color:red;
 }
+html#admin input.disableButtonAdminLoggedIn
+{
+    color:red;
+}
 html#admin input.disableButtonAdmin.enableButtonAdmin
 {
     color:rgb(115, 234, 0);
@@ -443,4 +447,11 @@ html main#message
 {
     height: 70%;
     width: 60%;
+}
+.adminTableHeader
+{
+    top: 0;
+    background-color: black;
+    position: sticky;
+    background-color:rgb(0 72 16);
 }
