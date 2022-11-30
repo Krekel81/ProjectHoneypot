@@ -34,7 +34,18 @@
                             <img id="avatar" src=<?php echo "/uploads/avatars/$user->name/$user->avatar"; ?> alt="" srcset="" class="avatar">
                         </div>
 
+                        <?php
+                        if($user->admin)
+                        {
+                            echo "<form method=''><button name='admin'>Admin</button</form>";
+                            if(isset($_GET['admin']))
+                            {
+                                header("Location: /admin");
+                                exit();
+                            }
+                        }
 
+                        ?>
                         <form>
                             <button name="btnLogout" id="btnLogout">Logout</button>
                         </form>
