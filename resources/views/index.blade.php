@@ -59,6 +59,11 @@
                             echo "<p style='color:red;'>Your account is disabled!</p>";
                             exit();
                         }
+                        if($user->loggedIn)
+                        {
+                            echo "<p style='color:red;'>User is already logged in!</p>";
+                            exit();
+                        }
                         echo "<p style='color:green;'>You are logged in</p>";
                         $_SESSION["username"] = $username;
                         $user->loggedIn = true;

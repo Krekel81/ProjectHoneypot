@@ -1,19 +1,3 @@
-<?php
-if(isset($_SESSION['loggedIn']))
-{
-    if(!($_SESSION["loggedIn"]))
-    {
-        header("Location: /");
-        exit();
-    }
-}
-else
-{
-    $_SESSION['loggedIn'] = false;
-    header("Location: /");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html id="admin" lang="en">
 <head>

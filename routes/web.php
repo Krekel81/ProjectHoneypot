@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChallengeCheckingController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
@@ -36,7 +37,7 @@ Route::get('/challenge3', [ViewController::class, 'getUserChallenge3']);
 Route::get('/challenge4', [ViewController::class, 'getUserChallenge4']);
 Route::get('/challenge5', [ViewController::class, 'getUserChallenge5']);
 Route::get('/hintChallenge5', [ViewController::class, 'hintChallenge5']);
-Route::get('/CompleteChallenge5InTheBrowserOfTheMatrixByTakingTheRedPill', [UserController::class, 'completedChallenge5']);
+Route::get('/CompleteChallenge5InTheBrowserOfTheMatrixByTakingTheRedPill', [ChallengeCheckingController::class, 'completedChallenge5']);
 Route::get('/rc', [UserController::class, 'resetChallengesUser']);
 
 

@@ -39,30 +39,24 @@ class UserController extends Controller
     }
     function checkIfInputIsValidUser($user, $validator)
     {
-        
+        session_start();
         if(!($validator-> fails()))
             {
                 $data = $validator->validate();
 
-                $user -> name = $data['name'];
+                $user->name = $data['name'];
                 $passwordEncrypted = password_hash($data['password'], PASSWORD_DEFAULT);
-                $user -> password = $passwordEncrypted;
+                $user->password = $passwordEncrypted;
 
-                $_SESSION["loggedIn"] = true;
                 $_SESSION["username"] = $data["name"];
                 $user->loggedIn = true;
-                $user -> save();
+                
+                $user->save();
 
                 $this->createFolder($user["name"]);
 
-                header("Location: ../profile");
-                exit();
-                return $user;
+                return redirect()->intended('profile');
             }
-            //Returns the errors and statuscode 422
-            //$statuscode = 422;
-            //return response()->json(["errors" => $validator->errors()], $statuscode);
-
             Log::warning("Validation input error");
             return redirect()->route('register', ["message"=>"User is already registered!"])->with(["message"=>"User is already registered!"]);
     }
@@ -107,9 +101,12 @@ class UserController extends Controller
     {
         if(!$this->isNotAuthorized())
         {
-            $user = User::where("name", $_SESSION["username"])->first();
+            session_start();
+            $user = User::where("name", $user)->first();
+
             $user->disabled =! $user->disabled;
             $user->save();
+
             return redirect()->intended('admin');
         }
         else return $this->isNotAuthorized();
@@ -151,7 +148,9 @@ class UserController extends Controller
         }
         else return $this->isNotAuthorized();
     }
+    
     public function getUserCheckingProfile(){
+        $user = User::where("name", $_SESSION["username"])->first();
         if(!$this->isNotAuthorized())
         {
             $user = User::where("name", $_SESSION["username"])->first();
@@ -170,7 +169,7 @@ class UserController extends Controller
             if($user->admin)
             {
                 $users = User::all();
-                return view("admin", $users);
+                return view("admin", ["users"=>$users]);
             }
             else
             {

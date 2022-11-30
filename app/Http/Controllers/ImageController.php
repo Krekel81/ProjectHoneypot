@@ -13,7 +13,6 @@ class ImageController extends Controller
 {
     public function uploadImage(Request $request)
     {
-        session_start();
         if($request->hasFile('avatar'))
         {
             try

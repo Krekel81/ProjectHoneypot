@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('challenge4')->default(false);
             $table->boolean('challenge5')->default(false);
             $table->boolean('loggedIn')->default(false);
+            $table->boolean('disabled')->default(false);
             $table->string('avatar')->default('default.jpg');
             $table->timestamps();
         });

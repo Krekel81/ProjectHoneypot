@@ -1,20 +1,4 @@
 <!DOCTYPE html>
-<?php
-if(isset($_SESSION['loggedIn']))
-{
-    if(!($_SESSION["loggedIn"]))
-    {
-        header("Location: /");
-        exit();
-    }
-}
-else
-{
-    $_SESSION['loggedIn'] = false;
-    header("Location: /");
-    exit();
-}
-?>
 <html id="index" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +23,7 @@ else
 
 <main id="message">
     <h1>{{ $message }}</h1>
-    <form action="/landing">
+    <form action="/profile">
     <button type="submit">Go back</button>
     </form>
 </main>

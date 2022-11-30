@@ -77,7 +77,6 @@ class ChallengeCheckingController extends Controller
     }
     public function completedChallenge5()
     {
-        session_start();
         if(!$this->isNotAuthorized())
         {
             $user = User::where("name", $_SESSION["username"])->first();
