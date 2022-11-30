@@ -70,10 +70,7 @@ class UserController extends Controller
             //return response()->json(["errors" => $validator->errors()], $statuscode);
 
             Log::warning("Validation input error");
-            $_SESSION["registered"] = true;
-            header("Location: ../register");
-            exit();
-            return response()->json(["errors" => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return redirect()->route('register', ["message"=>"User is already registered!"])->with(["message"=>"User is already registered!"]);
     }
     function getUser($userName)
     {
@@ -92,6 +89,15 @@ class UserController extends Controller
     }
 
     public function allUsersCheckingIndex(){
+        if(isset($_SESSION["username"]))
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user && $user->loggedIn && !($user->disabled))
+            {
+                return redirect()->intended('profile');
+            }
+        }
+        $_SESSION["username"] = "";
 
         $data = $this->model->all();
 
@@ -100,31 +106,60 @@ class UserController extends Controller
 
     public function allUsersCheckingRegister(){
 
+        if(isset($_SESSION["username"]))
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user && $user->loggedIn && !($user->disabled))
+            {
+                return redirect()->intended('profile');
+            }
+            
+        }
+        $_SESSION["username"] = "";
+
         $data = $this->model->all();
 
         return view("register", ["users" => $data]);
     }
 
     public function getUserCheckingLanding(){
-        
-
-        $user = User::where("name", $_SESSION["username"])->first();
-        
-        return view("landing", ["user" => $user]);
-    }
-    public function getUserCheckingProfile(){
-        
 
         if(isset($_SESSION["username"]))
         {
             $user = User::where("name", $_SESSION["username"])->first();
-            setcookie("ICanOnlyShowYouTheDoor", "dHJ5IGFnYWluIFlXNWtJR0ZuWVdsdWJtNXViaUJrU0VvMVNVYzVkVnBUUW5OWlYwWjZaRWhTTUVsSVVuQmlWMVpzV2xOQ1dsWXlVbTlYVm1SelpGZEtkRTVZVm1saFZVcHpWbTV3Y21WR1RsWmFSM1JyWWxaS1JWVlhOVU5oTVVwSVQxYzFXazFxUVRGWlZtUktaV3hXZFdORk1XbGlSV3QzVjJ0V1JrOVdRbEpRVkRBOQ==", time()+3600);
+            if($user)
+            {
+                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
+                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
+
+                return view("landing", ["user" => $user]);
+            }
+            else
+            {
+                return redirect()->route('/', ["message"=>"You are not logged in!"]);
+            }
         }
-        else
+
+        return redirect()->route('/', ["message"=>"You are not logged in!"]);
+        
+    }
+    public function getUserCheckingProfile(){
+        if(isset($_SESSION["username"]))
         {
-            return redirect()->intended('/');
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user)
+            {
+                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
+                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
+                setcookie("ICanOnlyShowYouTheDoor", "dHJ5IGFnYWluIFlXNWtJR0ZuWVdsdWJtNXViaUJrU0VvMVNVYzVkVnBUUW5OWlYwWjZaRWhTTUVsSVVuQmlWMVpzV2xOQ1dsWXlVbTlYVm1SelpGZEtkRTVZVm1saFZVcHpWbTV3Y21WR1RsWmFSM1JyWWxaS1JWVlhOVU5oTVVwSVQxYzFXazFxUVRGWlZtUktaV3hXZFdORk1XbGlSV3QzVjJ0V1JrOVdRbEpRVkRBOQ==", time()+3600);
+                return view("profile", ["user" => $user]);
+            }
+            else
+            {
+                return redirect()->route('/', ["message"=>"You are not logged in!"]);
+            }
         }
-        return view("profile", ["user" => $user]);
+        return redirect()->route('/', ["message"=>"You are not logged in!"]);
     }
 
     public function getUserChecking($name){
@@ -143,101 +178,37 @@ class UserController extends Controller
         return Log::info("Successfully created folder");
     }
 
-    public function completedChallenge1(Request $request)
-    {
-        session_start();
+    
 
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        if($request->input == "M0rph3u5{R3m3mb3r,_411_1m_0ff3r1ng_1s_th3_truth._Noth1ng_m0r3.}")
-        {
-            $user->challenge1 = true;
-            $user->save();
-            return redirect()->intended('landing');
-        }
-        $_SESSION["challenge"] = "failed";
-        return redirect()->intended('challenge1');
-    }
-    public function completedChallenge2(Request $request)
-    {
-        
-        session_start();
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        if($request->input == "N30{Y0u_3v3r_h4v3_th4t_f33l1ng_wh3r3_y0u_4r3_n0t_sur3_1f_y0u_4r3_4w4k3_0r_st1ll_dr34m1ng?}")
-        {
-            $user->challenge2 = true;
-            $user->save();
-            return redirect()->intended('landing');
-        }
-        $_SESSION["challenge"] = "failed";
-        return redirect()->intended('challenge2');
-    }
-    public function completedChallenge3(Request $request)
-    {
-        session_start();
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        if($request->input == "Th3M4tr1x-MyN4m315Morph3u5")
-        {
-            $user->challenge3 = true;
-            $user->save();
-            return redirect()->intended('landing');
-        }
-        $_SESSION["challenge"] = "failed";
-        return redirect()->intended('challenge3');
-    }
-    public function completedChallenge4(Request $request)
-    {
-        session_start();
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        if($request->input == "select * from pills where color='red' OR 1=1")
-        {
-            $user->challenge4 = true;
-            $user->save();
-            return redirect()->intended('landing');
-        }
-        $_SESSION["challenge"] = "failed";
-        return redirect()->intended('challenge4');
-    }
-    public function completedChallenge5()
-    {
-        session_start();
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        $user->challenge5 = true;
-        $user->save();
-        return redirect()->intended('landing');
-    }
-
-    public function hintChallenge5()
-    {
-        session_start();
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        return view("hintchallenge5", ["user" => $user]);
-    }
 
     public function resetChallengesUser()
     {
-        session_start();
+        if(isset($_SESSION["username"]))
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user)
+            {
+                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
+                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
+                
+                $user->challenge1 = false;
+                $user->challenge2 = false;
+                $user->challenge3 = false;
+                $user->challenge4 = false;
+                $user->challenge5 = false;
+        
+                $user->save();
+        
+                return redirect()->intended('landing');
+            }
+            else
+            {
+                return redirect()->route('/', ["message"=>"You are not logged in!"]);
+            }
+        }
+        return redirect()->route('/', ["message"=>"You are not logged in!"]);
 
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        $user->challenge1 = false;
-        $user->challenge2 = false;
-        $user->challenge3 = false;
-        $user->challenge4 = false;
-        $user->challenge5 = false;
-
-        $user->save();
-
-        return redirect()->intended('landing');
+       
     }
 
     function toggleDisableUser($user)
@@ -284,48 +255,23 @@ class UserController extends Controller
 
     }
 
-    function getUserChallenge1()
+    
+    function isNotAuthorized()
     {
-        
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        return view("challenge1", ["user" => $user]);
+        if(isset($_SESSION["username"]))
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user)
+            {
+                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
+                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
+                return false;
+            }
+            else
+            {
+                return redirect()->route('/', ["message"=>"You are not logged in!"]);
+            }
+        }
+        return redirect()->route('/', ["message"=>"You are not logged in!"]);
     }
-    function getUserChallenge2()
-    {
-        
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        return view("challenge2", ["user" => $user]);
-    }
-    function getUserChallenge3()
-    {
-        
-
-        setcookie("Flag", "Th3M4tr1x-MyN4m315Morph3u5", time()+3600);
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        return view("challenge3", ["user" => $user]);
-    }
-    function getUserChallenge4()
-    {
-        
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        return view("challenge4", ["user" => $user]);
-    }
-    function getUserChallenge5()
-    {
-        
-
-        $user = User::where("name", $_SESSION["username"])->first();
-
-        return view("challenge5", ["user" => $user]);
-    }
-
-
 }

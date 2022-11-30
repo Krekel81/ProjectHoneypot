@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChallengeCheckingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,11 +21,11 @@ use App\Models\User;
 Route::post('/user', [UserController::class, 'createNewUser']);
 Route::delete('/user', [UserController::class, "deleteAllUsers"]);
 
-Route::get('/challenge1', [UserController::class, 'completedChallenge1']);
-Route::get('/challenge2', [UserController::class, 'completedChallenge2']);
-Route::get('/challenge3', [UserController::class, 'completedChallenge3']);
-Route::get('/challenge4', [UserController::class, 'completedChallenge4']);
-Route::get('/challenge5', [UserController::class, 'completedChallenge5']);
+Route::get('/challenge1', [ChallengeCheckingController::class, 'completedChallenge1']);
+Route::get('/challenge2', [ChallengeCheckingController::class, 'completedChallenge2']);
+Route::get('/challenge3', [ChallengeCheckingController::class, 'completedChallenge3']);
+Route::get('/challenge4', [ChallengeCheckingController::class, 'completedChallenge4']);
+Route::get('/challenge5', [ChallengeCheckingController::class, 'completedChallenge5']);
 
 Route::get('/toggleDisableUser/{user}', [UserController::class, 'toggleDisableUser']);
 

@@ -1,20 +1,4 @@
 <!DOCTYPE html>
-<?php
-if(isset($_SESSION['loggedIn']))
-{
-    if(!($_SESSION["loggedIn"]) || $user->disabled)
-    {
-        header("Location: /");
-        exit();
-    }
-}
-else
-{
-    $_SESSION['loggedIn'] = false;
-    header("Location: /");
-    exit();
-}
-?>
 <html id="landingPage" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,8 +75,6 @@ else
                         if(isset($_GET['btnLogout']))
                         {
                             echo "<p>Logout</p>";
-                            $_SESSION["loggedIn"] = false;
-                            $_SESSION["username"] = "";
                             $user->loggedIn = false;
                             $user->save();
                             header("Location: /");

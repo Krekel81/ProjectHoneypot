@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-<?php
-if(isset($_SESSION["loggedIn"]))
-{
-    /*
-    if($_SESSION["loggedIn"])
-    {
-        header("Location: landing");
-        exit();
-    }
-    */
-}
-if(isset($_SESSION["username"])) $_SESSION["username"] = "";
-else $_SESSION["username"] = "";
-$_SESSION["loggedIn"] = false;
-?>
 <html lang="en" id="register">
 <head>
     <meta charset="UTF-8">
@@ -55,16 +40,7 @@ $_SESSION["loggedIn"] = false;
             <span><a href="/">Already have an account? Login here</a></span>
         </fieldset>
     </form>
-    <?php
-        if(isset($_SESSION["registered"]))
-        {
-            if($_SESSION["registered"])
-            {
-                echo "<p style='color:red;'>User already registered!</p>";
-                $_SESSION["registered"] = false;
-            }
-        }
-        ?>
+    <p style='color:red;'><?php if(isset($_GET["message"])) echo $_GET["message"]; ?></p>
 </main>
 </body>
 </html>

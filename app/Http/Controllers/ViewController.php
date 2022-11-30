@@ -3,45 +3,101 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ViewController extends Controller
 {
-
-    public function showIndex()
+    function getUserChallenge1()
     {
-        return view('index');
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return view("challenge1", ["user" => $user]);
+        }
+        else
+        {
+            return $this->isNotAuthorized();
+        }
     }
-    public function showRegister()
+    
+    function getUserChallenge2()
     {
-        return view('register');
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return view("challenge2", ["user" => $user]);
+        }
+        else
+        {
+            return $this->isNotAuthorized();
+        }
     }
-    public function showLanding()
+    function getUserChallenge3()
     {
-        return view('landing');
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            setcookie("Flag", "Th3M4tr1x-MyN4m315Morph3u5", time()+3600);
+            return view("challenge3", ["user" => $user]);
+        }
+        else
+        {
+            return $this->isNotAuthorized();
+        }
     }
-    public function showChallenge1()
+    function getUserChallenge4()
     {
-        return view('challenge1');
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return view("challenge4", ["user" => $user]);
+        }
+        else
+        {
+            return $this->isNotAuthorized();
+        }
     }
-    public function showChallenge2()
+    function getUserChallenge5()
     {
-        return view('challenge2');
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return view("challenge5", ["user" => $user]);
+        }
+        else
+        {
+            return $this->isNotAuthorized();
+        }
     }
-    public function showChallenge3()
+    public function hintChallenge5()
     {
-        return view('challenge3');
+        if(!$this->isNotAuthorized())
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            return view("hintchallenge5", ["user" => $user]);
+        }
+        else
+        {
+            return $this->isNotAuthorized();
+        }
     }
-    public function showChallenge4()
+    function isNotAuthorized()
     {
-        return view('challenge4');
-    }
-    public function showChallenge5()
-    {
-        return view('challenge5');
-    }
-    public function showAdmin()
-    {
-        return view('admin.admin');
+        if(isset($_SESSION["username"]))
+        {
+            $user = User::where("name", $_SESSION["username"])->first();
+            if($user)
+            {
+                if($user->disabled) return redirect()->route('/', ["message"=>"Your account is disabled!"]);
+                if(!($user->loggedIn)) return redirect()->route('/', ["message"=>"You are not logged in!"]);
+                return false;
+            }
+            else
+            {
+                return redirect()->route('/', ["message"=>"You are not logged in!"]);
+            }
+        }
+        return redirect()->route('/', ["message"=>"You are not logged in!"]);
     }
     public function helloworld()
     {

@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-<?php   
-if(isset($_SESSION["loggedIn"]))
-{
-    /*
-    if($_SESSION["loggedIn"])
-    {
-        header("Location: landing");
-        exit();
-    }
-    */
-}
-if(isset($_SESSION["username"])) $_SESSION["username"] = "";
-else $_SESSION["username"] = "";
-$_SESSION["loggedIn"] = false;
-?>
 <html id="index" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,7 +42,7 @@ $_SESSION["loggedIn"] = false;
             <span><a href="register">No account yet? Register here</a></span>
         </fieldset>
     </form>
-
+    <p style='color:red;'><?php if(isset($_GET["message"])) echo $_GET["message"]; ?></p>
     <?php
 
         if(isset($_GET["name"]) && isset($_GET["password"]))
@@ -76,11 +61,11 @@ $_SESSION["loggedIn"] = false;
                         }
                         echo "<p style='color:green;'>You are logged in</p>";
                         $_SESSION["username"] = $username;
-                        $_SESSION["loggedIn"] = true;
                         $user->loggedIn = true;
                         $user->save();
                         header("Location: profile");
                         exit();
+                        
                     }
                     else {
                         echo "<p style='color:red;'>Your password is invalid</p>";

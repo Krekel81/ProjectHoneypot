@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
@@ -19,12 +18,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [ViewController::class, 'showIndex']);
 //Route::get('/login', [LoginController::class, 'authenticate']);
-Route::get('/', [UserController::class, 'allUsersCheckingIndex']);
+Route::get('/', [UserController::class, 'allUsersCheckingIndex'])->name('/');
 
-Route::get('/register', [ViewController::class, 'showRegister']);
-Route::get('/register', [UserController::class, 'allUsersCheckingRegister']);
+Route::get('/register', [UserController::class, 'allUsersCheckingRegister'])->name('register');
 
 Route::get('/landing', [UserController::class, 'getUserCheckingLanding']);
 Route::post('/landing', [ImageController::class, 'uploadImage']);
@@ -33,23 +30,23 @@ Route::get('/profile', [UserController::class, 'getUserCheckingProfile']);
 
 Route::get('/admin', [UserController::class, 'GetUserCheckingAdmin']);
 
-Route::get('/challenge1', [UserController::class, 'getUserChallenge1']);
-Route::get('/challenge2', [UserController::class, 'getUserChallenge2']);
-Route::get('/challenge3', [ChallengeController::class, 'setCookie']);
-Route::get('/challenge3', [UserController::class, 'getUserChallenge3']);
-Route::get('/challenge4', [UserController::class, 'getUserChallenge4']);
-Route::get('/challenge5', [UserController::class, 'getUserChallenge5']);
-Route::get('/hintChallenge5', [UserController::class, 'hintChallenge5']);
+Route::get('/challenge1', [ViewController::class, 'getUserChallenge1']);
+Route::get('/challenge2', [ViewController::class, 'getUserChallenge2']);
+Route::get('/challenge3', [ViewController::class, 'getUserChallenge3']);
+Route::get('/challenge4', [ViewController::class, 'getUserChallenge4']);
+Route::get('/challenge5', [ViewController::class, 'getUserChallenge5']);
+Route::get('/hintChallenge5', [ViewController::class, 'hintChallenge5']);
 Route::get('/CompleteChallenge5InTheBrowserOfTheMatrixByTakingTheRedPill', [UserController::class, 'completedChallenge5']);
 Route::get('/rc', [UserController::class, 'resetChallengesUser']);
 
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
+/*
 Route::get('/test/test.php', [ViewController::class, 'showTest']);
 Route::get('/test/test2.php', [ViewController::class, 'showTest2']);
 Route::get('/test/test3.php', [ViewController::class, 'showTest3']);
-Route::get('/test/test4.php', [ViewController::class,'showTest4']);
-Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
+Route::get('/test/test4.php', [ViewController::class,'showTest4']);*/
+//Route::get('/test/config.php', [ViewController::class,'showTestConfig']);
 
 
 //Meneer Casier

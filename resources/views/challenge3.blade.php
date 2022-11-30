@@ -1,19 +1,3 @@
-<?php
-if(isset($_SESSION['loggedIn']))
-{
-    if(!($_SESSION["loggedIn"]) || $user->disabled)
-    {
-        header("Location: /");
-        exit();
-    }
-}
-else
-{
-    $_SESSION['loggedIn'] = false;
-    header("Location: /");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html id="landingChallenge" lang="en">
 <head>
