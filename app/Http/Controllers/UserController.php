@@ -188,7 +188,7 @@ class UserController extends Controller
             }
             else
             {
-                return view("message", ["message" => "404 Not Authorized"]);
+                return view("message", ["message" => "401 Not Authorized"]);
             }
         }
         else return $this->isNotAuthorized();
