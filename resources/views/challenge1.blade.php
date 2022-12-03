@@ -11,7 +11,6 @@
     <link href="https://fonts.cdnfonts.com/css/matrix" rel="stylesheet">
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
-    <script src="assets/js/checkIfLoggedOut.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -25,9 +24,8 @@
         <div class="landingChallenge">
             <h1>Challenge 1</h1>
             <div id="landingChallengeContent">
-                <div id="question">
-                    <p>Morpheus broke his important glasses.<br> He would like to have a new one made.</p>
-                    <!-- TIP: You should really look at the details of the glasses -->
+                <div id="question" hint="Look deep into the code of the glasses">
+                    <p>Morhpeus his glasses are very valuable to him.</p>
                     <form action="api/challenge1/">
                     <input type="text" name="input">
                         <button>Submit</button>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChallengeCheckingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -19,7 +20,6 @@ use App\Models\User;
 
 //users
 Route::post('/user', [UserController::class, 'createNewUser']);
-Route::delete('/user', [UserController::class, "deleteAllUsers"]);
 
 Route::get('/challenge1', [ChallengeCheckingController::class, 'completedChallenge1']);
 Route::get('/challenge2', [ChallengeCheckingController::class, 'completedChallenge2']);
@@ -27,5 +27,6 @@ Route::get('/challenge3', [ChallengeCheckingController::class, 'completedChallen
 Route::get('/challenge4', [ChallengeCheckingController::class, 'completedChallenge4']);
 Route::get('/challenge5', [ChallengeCheckingController::class, 'completedChallenge5']);
 
-Route::get('/toggleDisableUser/{user}', [UserController::class, 'toggleDisableUser']);
-Route::get('/toggleLogUser/{user}', [UserController::class, 'toggleLogUser']);
+Route::get('/toggleDisableUser/{user}', [AdminController::class, 'toggleDisableUser']);
+Route::get('/toggleLogUser/{user}', [AdminController::class, 'toggleLogUser']);
+Route::get('/deleteUser/{user}', [AdminController::class, 'deleteUser']);

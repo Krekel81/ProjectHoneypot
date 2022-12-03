@@ -71,13 +71,18 @@ class UserController extends Controller
         return Log::info("Successfully created folder");
     }
 
+    /*
     function deleteAllUsers()
     {
+        //This is for api.php in folder routes
+        //Route::delete('/user', [UserController::class, "deleteAllUsers"]);
+
         Log::info("Deleting all users");
         User::truncate();
         File::cleanDirectory(public_path('/uploads/avatars/'));
         return "All users were successfully deleted, new user object = ".User::all();
     }
+    */
 
     public function resetChallengesUser()
     {
@@ -97,35 +102,6 @@ class UserController extends Controller
         else return $this->isNotAuthorized();
     }
 
-    function toggleDisableUser($user)
-    {
-        session_start();
-        if(!$this->isNotAuthorized())
-        {
-            $user = User::where("name", $user)->first();
-
-            $user->disabled =! $user->disabled;
-            $user->save();
-
-            return redirect()->intended('admin');
-        }
-        else return $this->isNotAuthorized();
-    }
-
-    function toggleLogUser($user)
-    {
-        session_start();
-        if(!$this->isNotAuthorized())
-        {
-            $user = User::where("name", $user)->first();
-
-            $user->loggedIn =! $user->loggedIn;
-            $user->save();
-
-            return redirect()->intended('admin');
-        }
-        else return $this->isNotAuthorized();
-    }
 
     public function allUsersCheckingIndex(){
         if(!$this->isNotAuthorized())

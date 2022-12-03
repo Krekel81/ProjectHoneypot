@@ -386,6 +386,7 @@ html#admin #adminTableUsersDiv
 html#admin #adminTableUsers th, td
 {
     padding: 1rem;
+    
 }
 html#admin button.red{
     width: 10rem;
@@ -434,10 +435,12 @@ html#landingChallenge div#question
 html#admin input.disableButtonAdmin
 {
     color:red;
+    cursor: pointer;
 }
 html#admin input.disableButtonAdminLoggedIn
 {
     color:red;
+    cursor: pointer;
 }
 html#admin input.disableButtonAdmin.enableButtonAdmin
 {
@@ -454,4 +457,21 @@ html main#message
     background-color: black;
     position: sticky;
     background-color:rgb(0 72 16);
+    z-index: 9999;
+}
+.adminTableHeader td
+{
+    position: relative;
+}
+html#admin img#bin
+{
+    width: 2rem;
+    object-fit: contain;
+    position: absolute;
+    top: 12%;
+    cursor: pointer;
+}
+#adminTableUsers td
+{
+    position: relative;
 }

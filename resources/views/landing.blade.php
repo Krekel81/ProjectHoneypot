@@ -11,8 +11,6 @@
     <link href="https://fonts.cdnfonts.com/css/matrix" rel="stylesheet">
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
-    <script src="assets/js/checkIfLoggedOut.js"></script>
-    <script src="assets/js/redirect.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
