@@ -51,7 +51,7 @@
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
-                            @if(now()->timestamp - $user->last_active_at->timestamp == 0)
+                            @if(now()->timestamp - $user->last_active_at->timestamp < 10)
                             <td>Online</td>
                             @elseif(now()->timestamp - $user->last_active_at->timestamp < 60)
                             <td>{{ now()->timestamp - $user->last_active_at->timestamp }} seconds ago</td>
