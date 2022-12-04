@@ -25,23 +25,26 @@ class UserController extends Controller
         $rules = $this -> buildRulesUsers();
 
         $validator = Validator::make($request -> all(), $rules);
-        //Create model instance
-        $user = new User();
+        
+        
 
         //Save & return
-        return $this->checkIfInputIsValidUser($user, $validator);
+        return $this->checkIfInputIsValidUser($request, $validator);
     }
     function buildRulesUsers()
     {
 
-        return ["name" =>  "required|string|min:1|max:10|unique:users",
+        return ["name" =>  "required|string|min:1|max:10|regex:/^[a-zA-Z]+$/u|unique:users",
                 "password" =>  "required|string|min:3|max:15"];
     }
-    function checkIfInputIsValidUser($user, $validator)
+    function checkIfInputIsValidUser($request, $validator)
     {
         session_start();
         if(!($validator-> fails()))
             {
+                //Create model instance
+                $user = new User();
+
                 $data = $validator->validate();
 
                 $user->name = $data['name'];
@@ -57,8 +60,18 @@ class UserController extends Controller
 
                 return redirect()->intended('profile');
             }
+            
+            $users = User::all();
+            foreach($users as $user)
+            {
+                if($user->name == $request->name)
+                {
+                    Log::warning("User $user->name already exists");
+                    return redirect()->route('register', ["message"=>"User $user->name is already registered!"]);
+                }
+            }
             Log::warning("Validation input error");
-            return redirect()->route('register', ["message"=>"User is already registered!"])->with(["message"=>"User is already registered!"]);
+            return redirect()->route('register', ["message"=>"Validation failed!"]);
     }
 
     public function createFolder($name){
