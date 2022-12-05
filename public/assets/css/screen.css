@@ -357,7 +357,7 @@ html#admin img
 }
 html#admin #adminTableUsersDiv
 {
-    height: 25rem;
+    height: 30rem;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -442,9 +442,10 @@ html#admin input.disableButtonAdminLoggedIn
     color:red;
     cursor: pointer;
 }
-html#admin input.disableButtonAdmin.enableButtonAdmin
+html#admin input.enableButtonAdmin
 {
     color:rgb(115, 234, 0);
+    cursor: pointer;
 }
 html main#message
 {

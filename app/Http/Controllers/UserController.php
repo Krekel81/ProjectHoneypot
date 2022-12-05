@@ -91,11 +91,13 @@ class UserController extends Controller
         //Route::delete('/user', [UserController::class, "deleteAllUsers"]);
 
         Log::info("Deleting all users");
+        $users = User::all();
+
         User::truncate();
         File::cleanDirectory(public_path('/uploads/avatars/'));
         return "All users were successfully deleted, new user object = ".User::all();
     }
-    */
+    */  
 
     public function resetChallengesUser()
     {
