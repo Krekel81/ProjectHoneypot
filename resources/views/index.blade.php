@@ -30,13 +30,14 @@
     <h1>The Matrix</h1>
 </header>
 <main>
-    <form method="get">
+    <form method="post">
         <fieldset>
             <div>
                 <label for="name">NAME</label>
                 <input type="name" name="name" id="name" maxlength="10" required>
                 <label for="password">PASSWORD</label>
                 <input type="password" name="password" id="password" minlength="3" maxlength="15" required>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </div>
             <button>LOGIN</button>
             <span><a href="register">No account yet? Register here</a></span>
@@ -45,14 +46,14 @@
     <p style='color:red;'><?php if(isset($_GET["message"])) echo $_GET["message"]; ?></p>
     <?php
 
-        if(isset($_GET["name"]) && isset($_GET["password"]))
+        if(isset($_POST["name"]) && isset($_POST["password"]))
         {
             foreach ($users as $user) {
                 $username = $user->name;
                 $password = $user->password;
-                if($_GET["name"] == $username)
+                if($_POST["name"] == $username)
                 {
-                    if(password_verify($_GET["password"], $password))
+                    if(password_verify($_POST["password"], $password))
                     {
                         if($user->disabled)
                         {

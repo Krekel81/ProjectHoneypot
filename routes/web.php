@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 //Route::get('/login', [LoginController::class, 'authenticate']);
 Route::get('/', [UserController::class, 'allUsersCheckingIndex'])->name('/');
+Route::post('/', [UserController::class, 'allUsersCheckingIndex'])->name('/');
 
 Route::get('/register', [UserController::class, 'allUsersCheckingRegister'])->name('register');
 
@@ -42,7 +43,7 @@ Route::get('/rc', [UserController::class, 'resetChallengesUser']);
 
 
 Route::get('/hello', [ViewController::class, 'helloworld']);
-Route::get('/test', [UserController::class, 'test']);
+//Route::get('/test', [UserController::class, 'test']);
 /*
 Route::get('/test/test.php', [ViewController::class, 'showTest']);
 Route::get('/test/test2.php', [ViewController::class, 'showTest2']);
@@ -57,7 +58,7 @@ Route::get('/users', [UserDemoController::class, 'all']);
 Route::get('/users/{id}', [UserDemoController::class, 'get']);
 Route::get('/password', [UserDemoController::class, 'encrypt']);
 */
-
+/*
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -67,3 +68,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+*/
