@@ -18,7 +18,7 @@ class ViewController extends Controller
     }
     
     function getUserChallenge2()
-    {
+    {  
         if(!$this->isNotAuthorized())
         {
             $user = User::where("name", $_SESSION["username"])->first();

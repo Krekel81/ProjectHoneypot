@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/screen.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/Trinity.ico" type="image/x-icon">
     <link href="https://fonts.cdnfonts.com/css/matrix" rel="stylesheet">
     <!-- Our Scripts -->
     <script src="assets/js/run.js"></script>
@@ -25,7 +25,7 @@
             <h1>Challenge 4</h1>
             <div id="landingChallengeContent">
                 <div id="question">
-                    <p>Morpheus lost his red pill, help him retrieve the pill from the database.</p>
+                    <p>You need to search for the beloved of our dear friend Neo.</p>
                     <form action="api/challenge4">
 
                     <input type="text" name="input">

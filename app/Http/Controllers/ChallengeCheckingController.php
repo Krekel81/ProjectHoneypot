@@ -64,7 +64,7 @@ class ChallengeCheckingController extends Controller
         if(!$this->isNotAuthorized())
         {
             $user = User::where("name", $_SESSION["username"])->first();
-            if($request->input == "select * from pills where color='red' OR 1=1")
+            if($request->input == "Tr1n1ty{C0ngr4tul4t10n5}")
             {
                 $user->challenge4 = true;
                 $user->save();
