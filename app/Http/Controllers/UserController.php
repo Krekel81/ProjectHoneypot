@@ -18,6 +18,11 @@ class UserController extends Controller
         $this->model = $model;
     }
 
+    function hey($name)
+    {
+        return "Hey, " + $name + "!";
+    }
+
     function createNewUser(Request $request)
     {
         Log::info("Creating user");
@@ -25,8 +30,8 @@ class UserController extends Controller
         $rules = $this -> buildRulesUsers();
 
         $validator = Validator::make($request -> all(), $rules);
-        
-        
+
+
 
         //Save & return
         return $this->checkIfInputIsValidUser($request, $validator);
@@ -53,14 +58,14 @@ class UserController extends Controller
 
                 $_SESSION["username"] = $data["name"];
                 $user->loggedIn = true;
-                
+
                 $user->save();
 
                 $this->createFolder($user["name"]);
 
                 return redirect()->intended('profile');
             }
-            
+
             $users = User::all();
             foreach($users as $user)
             {
@@ -97,7 +102,7 @@ class UserController extends Controller
         File::cleanDirectory(public_path('/uploads/avatars/'));
         return "All users were successfully deleted, new user object = ".User::all();
     }
-    */  
+    */
 
     public function resetChallengesUser()
     {
@@ -109,9 +114,9 @@ class UserController extends Controller
             $user->challenge3 = false;
             $user->challenge4 = false;
             $user->challenge5 = false;
-    
+
             $user->save();
-    
+
             return redirect()->intended('landing');
         }
         else return $this->isNotAuthorized();
@@ -154,7 +159,7 @@ class UserController extends Controller
         }
         else return $this->isNotAuthorized();
     }
-    
+
     public function getUserCheckingProfile(){
         $user = User::where("name", $_SESSION["username"])->first();
         if(!$this->isNotAuthorized())
@@ -185,7 +190,7 @@ class UserController extends Controller
         else return $this->isNotAuthorized();
     }
 
-    
+
     function isNotAuthorized()
     {
         if(isset($_SESSION["username"]))

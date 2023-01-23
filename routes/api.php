@@ -31,3 +31,5 @@ Route::get('/challenge5', [ChallengeCheckingController::class, 'completedChallen
 Route::get('/toggleDisableUser/{user}', [AdminController::class, 'toggleDisableUser']);
 Route::get('/toggleLogUser/{user}', [AdminController::class, 'toggleLogUser']);
 Route::get('/deleteUser/{user}', [AdminController::class, 'deleteUser']);
+
+Route::get('/hey/{name}', [UserController::class, 'hey']);
